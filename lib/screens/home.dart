@@ -87,6 +87,33 @@ class _HomeState extends State<Home> {
     ),
   ];
 
+  List recomendedList = [
+    _ItemBanner(
+      title: 'Eco Clean',
+      subtitle: '3.5 km Rua Euclides, 265, 09111-110, Santo André',
+      assetImage: 'assets/home.jpg',
+      onClick: () => {},
+    ),
+    _ItemBanner(
+      title: 'Lumar Elétrica',
+      subtitle: '5.5 km Rua Euclides, 265, 09111-110, Santo André',
+      assetImage: 'assets/flutter_dev.png',
+      onClick: () => {},
+    ),
+    _ItemBanner(
+      title: 'Floresta Funilaria e Pintura',
+      subtitle: '1.5 km Av Queiróz Filho, 265, 09111-110, Santo André',
+      assetImage: 'assets/home.jpg',
+      onClick: () => {},
+    ),
+    _ItemBanner(
+      title: 'Bosh',
+      subtitle: '3.9 km Rua Euclides, 265, 09111-110, Santo André',
+      assetImage: 'assets/home.jpg',
+      onClick: () => {},
+    ),
+  ];
+
   List<T> map<T>(List list, Function handler) {
     List<T> result = [];
     for (var i = 0; i < list.length; i++) {
@@ -195,17 +222,112 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          SliverFixedExtentList(
-            itemExtent: 50.0,
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Container(
-                  alignment: Alignment.center,
-                  color: Colors.lightBlue[100 * (index % 9)],
-                  child: Text('List Item $index'),
-                );
-              },
-              childCount: 2,
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 32.0, left: 8.0),
+              child: Text(
+                'Ofertas especiais',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24.0,
+                ),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+              child: Column(
+                children: <Widget>[
+                  CarouselSlider(
+                    options: CarouselOptions(
+                      height: 310.0,
+                      enableInfiniteScroll: false,
+                    ),
+                    items: recomendedList.map((card) {
+                      return Builder(builder: (BuildContext context) {
+                        return Container(
+                          height: MediaQuery.of(context).size.height * 0.30,
+                          width: MediaQuery.of(context).size.width,
+                          child: card,
+                        );
+                      });
+                    }).toList(),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 32.0, left: 8.0),
+              child: Text(
+                'Recomendado para você',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24.0,
+                ),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+              child: Column(
+                children: <Widget>[
+                  CarouselSlider(
+                    options: CarouselOptions(
+                      height: 310.0,
+                      enableInfiniteScroll: false,
+                    ),
+                    items: recomendedList.map((card) {
+                      return Builder(builder: (BuildContext context) {
+                        return Container(
+                          height: MediaQuery.of(context).size.height * 0.30,
+                          width: MediaQuery.of(context).size.width,
+                          child: card,
+                        );
+                      });
+                    }).toList(),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 32.0, left: 8.0),
+              child: Text(
+                'Aberto agora',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24.0,
+                ),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+              child: Column(
+                children: <Widget>[
+                  CarouselSlider(
+                    options: CarouselOptions(
+                      height: 310.0,
+                      enableInfiniteScroll: false,
+                    ),
+                    items: recomendedList.map((card) {
+                      return Builder(builder: (BuildContext context) {
+                        return Container(
+                          height: MediaQuery.of(context).size.height * 0.30,
+                          width: MediaQuery.of(context).size.width,
+                          child: card,
+                        );
+                      });
+                    }).toList(),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -337,6 +459,92 @@ class _ItemCarousel extends StatelessWidget {
                 ),
               )
             ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ItemBanner extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final String assetImage;
+  final Function onClick;
+
+  _ItemBanner({
+    @required this.title,
+    this.subtitle = '',
+    this.assetImage = '',
+    @required this.onClick,
+  })  : assert(title != null),
+        assert(onClick != null);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 16.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Visibility(
+            visible: this.assetImage.isNotEmpty,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 220.0,
+                  width: 310.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                    image: DecorationImage(
+                      image: AssetImage(this.assetImage),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0, left: 8.0),
+                child: Text(
+                  this.title,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 22.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Visibility(
+            visible: subtitle.isNotEmpty,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                  child: SizedBox(
+                    width: 300.0,
+                    child: Text(
+                      this.subtitle,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
