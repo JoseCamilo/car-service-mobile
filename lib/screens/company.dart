@@ -1,4 +1,3 @@
-import 'package:car_service_mobile/screens/filter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -8,127 +7,142 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<_ItemDashboard> dashboardGridHome = [
+    _ItemDashboard(
+      title: 'Lavagem',
+      icon: Icons.auto_awesome,
+      onClick: () => {},
+      color: Colors.green,
+    ),
+    _ItemDashboard(
+      title: 'Pneu',
+      icon: Icons.album_outlined,
+      onClick: () => {},
+      color: Colors.amber,
+    ),
+    _ItemDashboard(
+      title: 'Óleo',
+      icon: Icons.invert_colors_on_outlined,
+      onClick: () => {},
+      color: Colors.blue,
+    ),
+    _ItemDashboard(
+      title: 'Elétrica',
+      icon: Icons.flash_on_outlined,
+      onClick: () => {},
+      color: Colors.purple,
+    ),
+    _ItemDashboard(
+      title: 'Mecanica',
+      icon: Icons.build_outlined,
+      onClick: () => {},
+      color: Colors.orange,
+    ),
+    _ItemDashboard(
+      title: 'Funilaria',
+      icon: Icons.auto_fix_high,
+      onClick: () => {},
+      color: Colors.red,
+    ),
+  ];
+
+  int _currentIndex = 0;
+
+  List carouselList = [
+    _ItemCarousel(
+      title: 'Lavagem',
+      subtitle: 'em casa',
+      onClick: () => {},
+      colors: [
+        Color(0xffff4000),
+        Color(0xffffcc66),
+      ],
+    ),
+    _ItemCarousel(
+      title: 'Troca Grátis',
+      subtitle: 'de óleo',
+      assetImage: 'assets/flutter_dev.png',
+      onClick: () => {},
+      colors: [
+        Color(0xFF008AC6),
+        Color(0xFF00BFFF),
+      ],
+    ),
+    _ItemCarousel(
+      title: 'Leva e Trás',
+      onClick: () => {},
+      colors: [
+        Color(0xFFDD1800),
+        Color(0xFFFF5F37),
+      ],
+    ),
+    _ItemCarousel(
+      title: 'Ajustes',
+      subtitle: 'grátis',
+      onClick: () => {},
+      colors: [
+        Color(0xff5f2c82),
+        Color(0xff49a09d),
+      ],
+    ),
+  ];
+
+  List recomendedList = [
+    _ItemBanner(
+      title: 'Eco Clean',
+      subtitle: '3.5 km Rua Euclides, 265, 09111-110, Santo André',
+      assetImage: 'assets/home.jpg',
+      onClick: () => {},
+    ),
+    _ItemBanner(
+      title: 'Lumar Elétrica',
+      subtitle: '5.5 km Rua Euclides, 265, 09111-110, Santo André',
+      assetImage: 'assets/flutter_dev.png',
+      onClick: () => {},
+    ),
+    _ItemBanner(
+      title: 'Floresta Funilaria e Pintura',
+      subtitle: '1.5 km Av Queiróz Filho, 265, 09111-110, Santo André',
+      assetImage: 'assets/home.jpg',
+      onClick: () => {},
+    ),
+    _ItemBanner(
+      title: 'Bosh',
+      subtitle: '3.9 km Rua Euclides, 265, 09111-110, Santo André',
+      assetImage: 'assets/home.jpg',
+      onClick: () => {},
+    ),
+  ];
+
+  List<T> map<T>(List list, Function handler) {
+    List<T> result = [];
+    for (var i = 0; i < list.length; i++) {
+      result.add(handler(i, list[i]));
+    }
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
-    int _currentIndex = 0;
-    List<_ItemDashboard> dashboardGridHome = [
-      _ItemDashboard(
-        title: 'Lavagem',
-        icon: Icons.auto_awesome,
-        onClick: () => {_showFilter(context)},
-      ),
-      _ItemDashboard(
-        title: 'Pneu',
-        icon: Icons.album_outlined,
-        onClick: () => {},
-      ),
-      _ItemDashboard(
-        title: 'Óleo',
-        icon: Icons.invert_colors_on_outlined,
-        onClick: () => {},
-      ),
-      _ItemDashboard(
-        title: 'Elétrica',
-        icon: Icons.flash_on_outlined,
-        onClick: () => {},
-      ),
-      _ItemDashboard(
-        title: 'Mecanica',
-        icon: Icons.build_outlined,
-        onClick: () => {},
-      ),
-      _ItemDashboard(
-        title: 'Funilaria',
-        icon: Icons.auto_fix_high,
-        onClick: () => {},
-      ),
-    ];
-    List carouselList = [
-      _ItemCarousel(
-        title: 'Lavagem',
-        subtitle: 'em casa',
-        assetImage: 'assets/flutter_dev.png',
-        onClick: () => {},
-        colors: [
-          Color(0xffff4000),
-          Color(0xffffcc66),
-        ],
-      ),
-      _ItemCarousel(
-        title: 'Troca Grátis',
-        subtitle: 'de óleo',
-        assetImage: 'assets/flutter_dev.png',
-        onClick: () => {},
-        colors: [
-          Color(0xFF008AC6),
-          Color(0xFF00BFFF),
-        ],
-      ),
-      _ItemCarousel(
-        title: 'Leva e Trás',
-        assetImage: 'assets/flutter_dev.png',
-        onClick: () => {},
-        colors: [
-          Color(0xFFDD1800),
-          Color(0xFFFF5F37),
-        ],
-      ),
-      _ItemCarousel(
-        title: 'Ajustes',
-        subtitle: 'grátis',
-        assetImage: 'assets/flutter_dev.png',
-        onClick: () => {},
-        colors: [
-          Color(0xff5f2c82),
-          Color(0xff49a09d),
-        ],
-      ),
-    ];
-
-    List recomendedList = [
-      _ItemBanner(
-        title: 'Eco Clean',
-        subtitle: '3.5 km Rua Euclides, 265, 09111-110, Santo André',
-        assetImage: 'assets/home.jpg',
-        onClick: () => {},
-      ),
-      _ItemBanner(
-        title: 'Lumar Elétrica',
-        subtitle: '5.5 km Rua Euclides, 265, 09111-110, Santo André',
-        assetImage: 'assets/flutter_dev.png',
-        onClick: () => {},
-      ),
-      _ItemBanner(
-        title: 'Floresta Funilaria e Pintura',
-        subtitle: '1.5 km Av Queiróz Filho, 265, 09111-110, Santo André',
-        assetImage: 'assets/home.jpg',
-        onClick: () => {},
-      ),
-      _ItemBanner(
-        title: 'Bosh',
-        subtitle: '3.9 km Rua Euclides, 265, 09111-110, Santo André',
-        assetImage: 'assets/home.jpg',
-        onClick: () => {},
-      ),
-    ];
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            pinned: false,
+            pinned: true,
             expandedHeight: 200.0,
             flexibleSpace: FlexibleSpaceBar(
+              title: Text('Car Service'),
               background: Stack(
                 fit: StackFit.expand,
                 children: [
                   Image(
-                    image: AssetImage('assets/car_service_logo.jpg'),
+                    image: AssetImage('assets/home.jpg'),
                     fit: BoxFit.cover,
                   ),
                   DecoratedBox(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        begin: Alignment(0.0, 3),
+                        begin: Alignment(0.0, 0.5),
                         end: Alignment(0.0, 0.0),
                         colors: <Color>[
                           Color(0x70000000),
@@ -198,7 +212,7 @@ class _HomeState extends State<Home> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: _currentIndex == index
-                              ? Theme.of(context).accentColor
+                              ? Colors.blueAccent
                               : Colors.grey,
                         ),
                       );
@@ -320,27 +334,22 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
-  List<T> map<T>(List list, Function handler) {
-    List<T> result = [];
-    for (var i = 0; i < list.length; i++) {
-      result.add(handler(i, list[i]));
-    }
-    return result;
-  }
 }
 
 class _ItemDashboard extends StatelessWidget {
   final String title;
   final IconData icon;
   final Function onClick;
+  final Color color;
 
   _ItemDashboard({
     @required this.title,
     @required this.icon,
+    @required this.color,
     @required this.onClick,
   })  : assert(title != null),
         assert(icon != null),
+        assert(color != null),
         assert(onClick != null);
 
   @override
@@ -351,9 +360,8 @@ class _ItemDashboard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),
-        color: Theme.of(context).primaryColor,
+        color: this.color,
         child: InkWell(
-          borderRadius: BorderRadius.circular(8.0),
           onTap: this.onClick,
           child: Container(
             padding: EdgeInsets.all(16.0),
@@ -542,12 +550,4 @@ class _ItemBanner extends StatelessWidget {
       ),
     );
   }
-}
-
-void _showFilter(BuildContext context) {
-  Navigator.of(context).push(
-    (MaterialPageRoute(
-      builder: (context) => Filter(),
-    )),
-  );
 }

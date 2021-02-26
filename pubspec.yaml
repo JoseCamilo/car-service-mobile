@@ -49,6 +49,7 @@ flutter:
   assets:
     - assets/home.jpg
     - assets/flutter_dev.png
+    - assets/car_service_logo.jpg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
