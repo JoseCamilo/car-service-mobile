@@ -13,7 +13,7 @@ class BannerCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider(
       options: CarouselOptions(
-        height: MediaQuery.of(context).size.height * 0.46,
+        height: MediaQuery.of(context).size.height * 0.35,
         enableInfiniteScroll: false,
       ),
       items: listBanner.map((card) {
@@ -68,11 +68,11 @@ class ItemBannerCarousel extends StatelessWidget {
               Visibility(
                 visible: this.assetImage.isNotEmpty,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.33,
-                      width: MediaQuery.of(context).size.width * 0.76,
+                      height: MediaQuery.of(context).size.height * 0.25,
+                      width: MediaQuery.of(context).size.width * 0.70,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(6.0)),
                         image: DecorationImage(
@@ -105,7 +105,7 @@ class ItemBannerCarousel extends StatelessWidget {
                                       maxLines: 2,
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 14.0,
+                                        fontSize: 12.0,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -133,7 +133,7 @@ class ItemBannerCarousel extends StatelessWidget {
                         maxLines: 1,
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 22.0,
+                          fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -155,8 +155,8 @@ class ItemBannerCarousel extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.0,
+                            color: Colors.black54,
+                            fontSize: 14.0,
                             fontWeight: FontWeight.w600,
                           ),
                         ),

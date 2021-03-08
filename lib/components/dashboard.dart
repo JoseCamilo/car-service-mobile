@@ -34,13 +34,13 @@ class ItemDashboard extends StatelessWidget {
                 Icon(
                   this.icon,
                   color: Colors.white,
-                  size: 40,
+                  size: 30,
                 ),
                 Text(
                   this.title,
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: 14,
                   ),
                 ),
               ],

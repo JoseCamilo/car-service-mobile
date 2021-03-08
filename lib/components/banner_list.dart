@@ -35,7 +35,7 @@ class ItemBannerList extends StatelessWidget {
             sale: this.sale,
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Visibility(
                 visible: this.assetImage.isNotEmpty,
@@ -44,7 +44,7 @@ class ItemBannerList extends StatelessWidget {
                   children: [
                     Container(
                       height: MediaQuery.of(context).size.height * 0.33,
-                      width: MediaQuery.of(context).size.width * 0.98,
+                      width: MediaQuery.of(context).size.width * 0.80,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(6.0)),
                         image: DecorationImage(
@@ -52,24 +52,60 @@ class ItemBannerList extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                       ),
+                      child: Visibility(
+                        visible: this.sale.isNotEmpty,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.black54,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(6.0)),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      this.sale,
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.center,
+                                      maxLines: 2,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                     child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.96,
+                      width: MediaQuery.of(context).size.width * 0.79,
                       child: Text(
                         this.title,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 22.0,
+                          fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -80,19 +116,19 @@ class ItemBannerList extends StatelessWidget {
               Visibility(
                 visible: subtitle.isNotEmpty,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                       child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.96,
+                        width: MediaQuery.of(context).size.width * 0.79,
                         child: Text(
                           this.subtitle,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.0,
+                            color: Colors.black54,
+                            fontSize: 14.0,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -104,11 +140,11 @@ class ItemBannerList extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Divider(
-                  color: Colors.black26,
-                  height: 10,
+                  color: Colors.black12,
+                  height: 0,
                   thickness: 1,
-                  indent: 20,
-                  endIndent: 20,
+                  indent: 100,
+                  endIndent: 100,
                 ),
               )
             ],

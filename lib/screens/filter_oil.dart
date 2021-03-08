@@ -46,7 +46,7 @@ class _FilterOilState extends State<FilterOil> {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+              padding: const EdgeInsets.only(top: 16.0),
               child: Column(
                 children: <Widget>[
                   BannerCarousel(listBanner: recomendedList),
@@ -56,7 +56,7 @@ class _FilterOilState extends State<FilterOil> {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.only(top: 32.0, left: 8.0),
+              padding: const EdgeInsets.only(top: 8.0, left: 8.0),
               child: Text(
                 'Lojas disponvieis',
                 style: TextStyle(

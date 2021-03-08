@@ -37,21 +37,21 @@ class ItemCarousel extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                width: MediaQuery.of(context).size.width * 0.226,
+                width: MediaQuery.of(context).size.width * 0.30,
                 child: Text(this.title,
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 22.0,
+                        fontSize: 18.0,
                         fontWeight: FontWeight.bold)),
               ),
               Visibility(
                 visible: subtitle.isNotEmpty,
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.226,
+                  width: MediaQuery.of(context).size.width * 0.30,
                   child: Text(this.subtitle,
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 17.0,
+                          fontSize: 14.0,
                           fontWeight: FontWeight.w600)),
                 ),
               ),
@@ -64,7 +64,7 @@ class ItemCarousel extends StatelessWidget {
                 visible: this.assetImage.isNotEmpty,
                 child: Image.asset(
                   this.assetImage,
-                  height: 180.0,
+                  height: 140.0,
                   fit: BoxFit.cover,
                 ),
               )

@@ -78,7 +78,7 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
   List carouselList = [
     ItemCarousel(
-      title: 'Lavagem',
+      title: 'Lavagem em casa depois',
       subtitle: 'em casa',
       assetImage: 'assets/flutter_dev.png',
       onClick: () => {},
@@ -189,8 +189,8 @@ class _HomeState extends State<Home> {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               mainAxisSpacing: 0,
               crossAxisSpacing: 0,
-              childAspectRatio: 2.0,
-              crossAxisCount: 2,
+              childAspectRatio: 1.5,
+              crossAxisCount: 3,
             ),
             delegate: SliverChildListDelegate(
               dashboardGridHome,
@@ -203,13 +203,13 @@ class _HomeState extends State<Home> {
                 children: <Widget>[
                   CarouselSlider(
                     options: CarouselOptions(
-                      height: 200.0,
+                      height: 150.0,
                       autoPlay: true,
                       autoPlayInterval: Duration(seconds: 6),
                       autoPlayAnimationDuration: Duration(milliseconds: 800),
                       autoPlayCurve: Curves.fastOutSlowIn,
                       pauseAutoPlayOnTouch: true,
-                      aspectRatio: 2.0,
+                      aspectRatio: 1.5,
                       onPageChanged: (index, reason) {
                         setState(() {
                           _currentIndex = index;
@@ -219,7 +219,7 @@ class _HomeState extends State<Home> {
                     items: carouselList.map((card) {
                       return Builder(builder: (BuildContext context) {
                         return Container(
-                          height: MediaQuery.of(context).size.height * 0.30,
+                          height: MediaQuery.of(context).size.height * 0.10,
                           width: MediaQuery.of(context).size.width,
                           child: Card(
                             shape: RoundedRectangleBorder(
@@ -254,7 +254,7 @@ class _HomeState extends State<Home> {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.only(top: 32.0, left: 8.0),
+              padding: const EdgeInsets.only(top: 16.0, left: 8.0),
               child: Text(
                 'Ofertas especiais',
                 style: TextStyle(
@@ -266,7 +266,7 @@ class _HomeState extends State<Home> {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+              padding: const EdgeInsets.only(top: 16.0),
               child: Column(
                 children: <Widget>[
                   BannerCarousel(listBanner: recomendedList),
@@ -276,7 +276,7 @@ class _HomeState extends State<Home> {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.only(top: 32.0, left: 8.0),
+              padding: const EdgeInsets.only(top: 16.0, left: 8.0),
               child: Text(
                 'Recomendado para você',
                 style: TextStyle(
@@ -288,7 +288,7 @@ class _HomeState extends State<Home> {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+              padding: const EdgeInsets.only(top: 16.0),
               child: Column(
                 children: <Widget>[
                   BannerCarousel(listBanner: recomendedList),
@@ -298,7 +298,7 @@ class _HomeState extends State<Home> {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.only(top: 32.0, left: 8.0),
+              padding: const EdgeInsets.only(top: 16.0, left: 8.0),
               child: Text(
                 'Aberto agora',
                 style: TextStyle(
@@ -310,7 +310,7 @@ class _HomeState extends State<Home> {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+              padding: const EdgeInsets.only(top: 16.0),
               child: Column(
                 children: <Widget>[
                   BannerCarousel(listBanner: recomendedList),
