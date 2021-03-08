@@ -1,39 +1,49 @@
 import 'package:car_service_mobile/screens/home.dart';
+import 'package:car_service_mobile/screens/search.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
-  // This widget is the root of your application.
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  int _indiceAtual = 0;
-  final List<Widget> _telas = [
-    Home(),
-    Icon(Icons.directions_transit),
-    Icon(Icons.directions_bike),
-    Icon(Icons.directions_bike),
+  List<Widget> _widgets = <Widget>[
+    HomeBuilderNavigator(),
+    SearchBuilderNavigator(),
+    Icon(Icons.time_to_leave),
+    Icon(Icons.access_alarm),
   ];
+  int _defaultIndexTab = 0;
+  int _selectedIndexTab;
+
+  void _onTapHandler(int index) {
+    setState(() {
+      _selectedIndexTab = index;
+    });
+  }
+
+  @override
+  initState() {
+    super.initState();
+    _selectedIndexTab = _defaultIndexTab;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Car Service',
       theme: ThemeData(
         brightness: Brightness.light,
         primaryColor: Colors.redAccent[700],
-        accentColor: Colors.cyan[600],
+        accentColor: Colors.red[700],
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
-        body: _telas[_indiceAtual],
+        body: _widgets[_selectedIndexTab],
         bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _indiceAtual,
-          onTap: onTabTapped,
           type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(
@@ -53,14 +63,10 @@ class _MyAppState extends State<MyApp> {
               label: "Perfil",
             ),
           ],
+          onTap: _onTapHandler,
+          currentIndex: _selectedIndexTab,
         ),
       ),
     );
-  }
-
-  void onTabTapped(int index) {
-    setState(() {
-      _indiceAtual = index;
-    });
   }
 }
