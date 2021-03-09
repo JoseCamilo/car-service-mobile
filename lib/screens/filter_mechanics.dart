@@ -69,7 +69,8 @@ class _FilterMechanicsState extends State<FilterMechanics> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                return Container(
+                return Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
                   child: listBanner[index],
                 );
               },
