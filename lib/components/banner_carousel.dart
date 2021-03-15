@@ -13,7 +13,7 @@ class BannerCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider(
       options: CarouselOptions(
-        height: MediaQuery.of(context).size.height * 0.35,
+        height: MediaQuery.of(context).size.height * 0.37,
         viewportFraction: 0.75,
         enableInfiniteScroll: false,
       ),

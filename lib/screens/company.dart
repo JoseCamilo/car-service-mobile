@@ -45,12 +45,13 @@ class Company extends StatelessWidget {
       ),
     ];
     return Scaffold(
+      backgroundColor: Colors.black12,
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
             iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
             pinned: true,
-            expandedHeight: 200.0,
+            expandedHeight: 100.0,
             backgroundColor: Colors.white,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
@@ -70,6 +71,7 @@ class Company extends StatelessWidget {
                         begin: Alignment(0.0, 0.6),
                         end: Alignment(0.0, 0.0),
                         colors: <Color>[
+                          Color(0xF0FFFFFF),
                           Color(0x90FFFFFF),
                           Color(0x00000000),
                         ],
@@ -81,100 +83,126 @@ class Company extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.67,
-                      child: Text(
-                        args.title,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.67,
+                        child: Text(
+                          args.title,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.67,
-                      child: Text(
-                        args.description,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.67,
+                        child: Text(
+                          args.description,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: TextStyle(
+                            color: Colors.black54,
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 0.0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.80,
-                      child: Text(
-                        args.address,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 0.0),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.80,
+                        child: Text(
+                          args.address,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: TextStyle(
+                            color: Colors.black54,
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.25,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.black54,
-                          borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            args.sale,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.center,
-                            maxLines: 2,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.w600,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.25,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.black54,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(6.0)),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              args.sale,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding:
-                  const EdgeInsets.only(top: 24.0, left: 16.0, bottom: 8.0),
-              child: Text(
-                'Destaques',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 24.0,
-                ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: 24.0, left: 16.0, bottom: 8.0),
+                    child: Text(
+                      'Destaques',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24.0,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Divider(
+                      color: Colors.black12,
+                      height: 0,
+                      thickness: 2,
+                      indent: 0,
+                      endIndent: 0,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -182,6 +210,9 @@ class Company extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
                 return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
                   child: listServices[index],
                 );
               },
@@ -189,15 +220,35 @@ class Company extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding:
-                  const EdgeInsets.only(top: 24.0, left: 16.0, bottom: 8.0),
-              child: Text(
-                'Serviços',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 24.0,
-                ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: 24.0, left: 16.0, bottom: 8.0),
+                    child: Text(
+                      'Serviços',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24.0,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Divider(
+                      color: Colors.black12,
+                      height: 0,
+                      thickness: 2,
+                      indent: 0,
+                      endIndent: 0,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -205,6 +256,9 @@ class Company extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
                 return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
                   child: listServices[index],
                 );
               },

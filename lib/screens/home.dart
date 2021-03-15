@@ -80,7 +80,7 @@ class _HomeState extends State<Home> {
     ItemCarousel(
       title: 'Lavagem em casa depois',
       subtitle: 'em casa',
-      assetImage: 'assets/flutter_dev.png',
+      assetImage: 'assets/images/flutter_dev.png',
       onClick: () => {},
       colors: [
         Color(0xffff4000),
@@ -90,7 +90,7 @@ class _HomeState extends State<Home> {
     ItemCarousel(
       title: 'Troca Grátis',
       subtitle: 'de óleo',
-      assetImage: 'assets/flutter_dev.png',
+      assetImage: 'assets/images/flutter_dev.png',
       onClick: () => {},
       colors: [
         Color(0xFF008AC6),
@@ -99,7 +99,7 @@ class _HomeState extends State<Home> {
     ),
     ItemCarousel(
       title: 'Leva e Trás',
-      assetImage: 'assets/flutter_dev.png',
+      assetImage: 'assets/images/flutter_dev.png',
       onClick: () => {},
       colors: [
         Color(0xFFDD1800),
@@ -109,7 +109,7 @@ class _HomeState extends State<Home> {
     ItemCarousel(
       title: 'Ajustes',
       subtitle: 'grátis',
-      assetImage: 'assets/flutter_dev.png',
+      assetImage: 'assets/images/flutter_dev.png',
       onClick: () => {},
       colors: [
         Color(0xff5f2c82),
@@ -166,7 +166,7 @@ class _HomeState extends State<Home> {
                 fit: StackFit.expand,
                 children: [
                   Image(
-                    image: AssetImage('assets/car_service_logo.jpg'),
+                    image: AssetImage('assets/images/car_service_logo.jpg'),
                     fit: BoxFit.cover,
                   ),
                   DecoratedBox(
