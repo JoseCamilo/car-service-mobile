@@ -7,6 +7,8 @@ class ScreenArguments {
   final String description;
   final String address;
   final String sale;
+  final String stars;
+  final String ratings;
 
   ScreenArguments(
       {this.id,
@@ -16,5 +18,7 @@ class ScreenArguments {
       this.image,
       this.description,
       this.sale,
+      this.stars,
+      this.ratings,
       this.address});
 }

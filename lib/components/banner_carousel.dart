@@ -37,6 +37,8 @@ class ItemBannerCarousel extends StatelessWidget {
   final String assetImage;
   final String sale;
   final String description;
+  final String stars;
+  final String ratings;
 
   ItemBannerCarousel({
     @required this.title,
@@ -44,6 +46,8 @@ class ItemBannerCarousel extends StatelessWidget {
     this.assetImage = '',
     this.sale = '',
     this.description = '',
+    this.stars = '',
+    this.ratings = '',
   }) : assert(title != null);
 
   @override
@@ -61,6 +65,8 @@ class ItemBannerCarousel extends StatelessWidget {
           description: this.description,
           address: this.subtitle,
           sale: this.sale,
+          stars: this.stars,
+          ratings: this.ratings,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -80,13 +86,13 @@ class ItemBannerCarousel extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    child: Visibility(
-                      visible: this.sale.isNotEmpty,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Visibility(
+                          visible: this.sale.isNotEmpty,
+                          child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: SizedBox(
                               width: MediaQuery.of(context).size.width * 0.25,
@@ -113,8 +119,52 @@ class ItemBannerCarousel extends StatelessWidget {
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                        Visibility(
+                          visible: this.stars.isNotEmpty,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.19,
+                              height: MediaQuery.of(context).size.height * 0.07,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black54,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(6.0)),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      this.stars,
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.center,
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      '$ratings avaliações',
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.start,
+                                      maxLines: 2,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 10.0,
+                                        fontWeight: FontWeight.w300,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -182,6 +232,8 @@ class ItemBannerCarousel extends StatelessWidget {
     String description,
     String address,
     String sale,
+    String stars,
+    String ratings,
   }) {
     Navigator.of(context).pushNamed(
       'company',
@@ -191,6 +243,8 @@ class ItemBannerCarousel extends StatelessWidget {
         description: description,
         address: address,
         sale: sale,
+        stars: stars,
+        ratings: ratings,
       ),
     );
   }

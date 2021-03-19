@@ -51,7 +51,7 @@ class Company extends StatelessWidget {
           SliverAppBar(
             iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
             pinned: true,
-            expandedHeight: 100.0,
+            expandedHeight: 150.0,
             backgroundColor: Colors.white,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
@@ -95,18 +95,77 @@ class Company extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.67,
-                        child: Text(
-                          args.title,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.65,
+                            child: Text(
+                              args.title,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        ),
+                          RichText(
+                            text: TextSpan(
+                              children: [
+                                WidgetSpan(
+                                  child: Icon(
+                                    Icons.star,
+                                    size: 16,
+                                    color: Colors.amber[700],
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: '${args.stars} (${args.ratings})',
+                                  style: TextStyle(
+                                    color: Colors.amber[700],
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          // SizedBox(
+                          //   width: MediaQuery.of(context).size.width * 0.20,
+                          //   child: RichText(
+                          //     text: TextSpan(
+                          //       children: [
+                          //         WidgetSpan(
+                          //           child: Icon(Icons.star, size: 16),
+                          //         ),
+                          //         TextSpan(
+                          //           text: '4,6(1800)',
+                          //           style: TextStyle(
+                          //             color: Colors.black,
+                          //             fontSize: 14.0,
+                          //             fontWeight: FontWeight.bold,
+                          //           ),
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   width: MediaQuery.of(context).size.width * 0.20,
+                          //   child: Text(
+                          //     'S4,6 (1800)',
+                          //     overflow: TextOverflow.ellipsis,
+                          //     maxLines: 1,
+                          //     style: TextStyle(
+                          //       color: Colors.black,
+                          //       fontSize: 14.0,
+                          //       fontWeight: FontWeight.bold,
+                          //     ),
+                          //   ),
+                          // ),
+                        ],
                       ),
                     ),
                     Padding(
