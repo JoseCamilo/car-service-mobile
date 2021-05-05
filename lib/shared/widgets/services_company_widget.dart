@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ItemServicesCompany extends StatelessWidget {
+class ItemServicesCompanyWidget extends StatelessWidget {
   final String title;
   final String description;
   final String price;
   final String time;
 
-  ItemServicesCompany({this.title, this.description, this.price, this.time});
+  ItemServicesCompanyWidget(
+      {this.title, this.description, this.price, this.time});
 
   @override
   Widget build(BuildContext context) {

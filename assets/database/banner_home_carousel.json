@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Lavagem",
+    "subtitle": "em casa",
+    "assetImage": "assets/images/flutter_dev.png"
+  },
+  {
+    "title": "Troca Grátis",
+    "subtitle": "de óleo",
+    "assetImage": "assets/images/flutter_dev.png"
+  },
+  {
+    "title": "Leva e Trás",
+    "subtitle": "",
+    "assetImage": "assets/images/flutter_dev.png"
+  },
+  {
+    "title": "Ajustes",
+    "subtitle": "grátis",
+    "assetImage": "assets/images/flutter_dev.png"
+  }
+]

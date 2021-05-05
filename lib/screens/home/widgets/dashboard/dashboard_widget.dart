@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ItemDashboard extends StatelessWidget {
+class ItemDashboardWidget extends StatelessWidget {
   final String title;
   final IconData icon;
   final Function onClick;
 
-  ItemDashboard({
+  ItemDashboardWidget({
     @required this.title,
     @required this.icon,
     @required this.onClick,

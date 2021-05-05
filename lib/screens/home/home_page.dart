@@ -1,7 +1,7 @@
-import 'package:car_service_mobile/components/banner_carousel.dart';
-import 'package:car_service_mobile/components/carousel.dart';
-import 'package:car_service_mobile/components/dashboard.dart';
-import 'package:car_service_mobile/models/database.dart';
+import 'package:car_service_mobile/shared/widgets/banner_carousel_widget.dart';
+import 'package:car_service_mobile/screens/home/widgets/dashboard/dashboard_widget.dart';
+import 'package:car_service_mobile/screens/home/widgets/special_offers/special_offers_widget.dart';
+import 'package:car_service_mobile/shared/models/database.dart';
 import 'package:car_service_mobile/screens/company.dart';
 import 'package:car_service_mobile/screens/filter_body.dart';
 import 'package:car_service_mobile/screens/filter_eletric.dart';
@@ -9,7 +9,7 @@ import 'package:car_service_mobile/screens/filter_mechanics.dart';
 import 'package:car_service_mobile/screens/filter_oil.dart';
 import 'package:car_service_mobile/screens/filter_tire.dart';
 import 'package:car_service_mobile/screens/filter_wash.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:car_service_mobile/screens/home/widgets/banner_promotions/banner_promotions_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeBuilderNavigator extends StatelessWidget {
@@ -75,80 +75,38 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _currentIndex = 0;
-  List carouselList = [
-    ItemCarousel(
-      title: 'Lavagem em casa depois',
-      subtitle: 'em casa',
-      assetImage: 'assets/images/flutter_dev.png',
-      onClick: () => {},
-      colors: [
-        Color(0xffff4000),
-        Color(0xffffcc66),
-      ],
-    ),
-    ItemCarousel(
-      title: 'Troca Grátis',
-      subtitle: 'de óleo',
-      assetImage: 'assets/images/flutter_dev.png',
-      onClick: () => {},
-      colors: [
-        Color(0xFF008AC6),
-        Color(0xFF00BFFF),
-      ],
-    ),
-    ItemCarousel(
-      title: 'Leva e Trás',
-      assetImage: 'assets/images/flutter_dev.png',
-      onClick: () => {},
-      colors: [
-        Color(0xFFDD1800),
-        Color(0xFFFF5F37),
-      ],
-    ),
-    ItemCarousel(
-      title: 'Ajustes',
-      subtitle: 'grátis',
-      assetImage: 'assets/images/flutter_dev.png',
-      onClick: () => {},
-      colors: [
-        Color(0xff5f2c82),
-        Color(0xff49a09d),
-      ],
-    ),
-  ];
-
-  List<ItemBannerCarousel> recomendedList = DataBase().recomendedList;
+  List<ItemBannerCarouselWidget> recomendedList = DataBase().recomendedList;
+  List<ItemBannerCarouselWidget> openedList = DataBase().openedList;
 
   @override
   Widget build(BuildContext context) {
-    List<ItemDashboard> dashboardGridHome = [
-      ItemDashboard(
+    List<ItemDashboardWidget> dashboardGridHome = [
+      ItemDashboardWidget(
         title: 'Lavagem',
         icon: Icons.auto_awesome,
         onClick: () => _showWash(context),
       ),
-      ItemDashboard(
+      ItemDashboardWidget(
         title: 'Pneu',
         icon: Icons.album_outlined,
         onClick: () => _showTire(context),
       ),
-      ItemDashboard(
+      ItemDashboardWidget(
         title: 'Óleo',
         icon: Icons.invert_colors_on_outlined,
         onClick: () => _showOil(context),
       ),
-      ItemDashboard(
+      ItemDashboardWidget(
         title: 'Elétrica',
         icon: Icons.flash_on_outlined,
         onClick: () => _showEletric(context),
       ),
-      ItemDashboard(
+      ItemDashboardWidget(
         title: 'Mecânica',
         icon: Icons.build_outlined,
         onClick: () => _showMechanics(context),
       ),
-      ItemDashboard(
+      ItemDashboardWidget(
         title: 'Funilaria',
         icon: Icons.auto_fix_high,
         onClick: () => _showBody(context),
@@ -197,82 +155,10 @@ class _HomeState extends State<Home> {
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 32.0, bottom: 16.0),
-              child: Column(
-                children: <Widget>[
-                  CarouselSlider(
-                    options: CarouselOptions(
-                      height: 150.0,
-                      autoPlay: true,
-                      autoPlayInterval: Duration(seconds: 6),
-                      autoPlayAnimationDuration: Duration(milliseconds: 800),
-                      autoPlayCurve: Curves.fastOutSlowIn,
-                      pauseAutoPlayOnTouch: true,
-                      aspectRatio: 1.5,
-                      onPageChanged: (index, reason) {
-                        setState(() {
-                          _currentIndex = index;
-                        });
-                      },
-                    ),
-                    items: carouselList.map((card) {
-                      return Builder(builder: (BuildContext context) {
-                        return Container(
-                          height: MediaQuery.of(context).size.height * 0.10,
-                          width: MediaQuery.of(context).size.width,
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(24.0),
-                            ),
-                            child: card,
-                          ),
-                        );
-                      });
-                    }).toList(),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: map<Widget>(carouselList, (index, url) {
-                      return Container(
-                        width: 10.0,
-                        height: 10.0,
-                        margin: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 2.0),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: _currentIndex == index
-                              ? Theme.of(context).accentColor
-                              : Colors.grey,
-                        ),
-                      );
-                    }),
-                  ),
-                ],
-              ),
-            ),
+            child: BannerPromotionsWidget(),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 16.0, left: 8.0),
-              child: Text(
-                'Ofertas especiais',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24.0,
-                ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 16.0),
-              child: Column(
-                children: <Widget>[
-                  BannerCarousel(listBanner: recomendedList),
-                ],
-              ),
-            ),
+            child: SpecialOffersWidget(),
           ),
           SliverToBoxAdapter(
             child: Padding(
@@ -291,7 +177,7 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.only(top: 16.0),
               child: Column(
                 children: <Widget>[
-                  BannerCarousel(listBanner: recomendedList),
+                  BannerCarouselWidget(listBanner: recomendedList),
                 ],
               ),
             ),
@@ -313,7 +199,7 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.only(top: 16.0),
               child: Column(
                 children: <Widget>[
-                  BannerCarousel(listBanner: recomendedList),
+                  BannerCarouselWidget(listBanner: openedList),
                 ],
               ),
             ),
@@ -321,14 +207,6 @@ class _HomeState extends State<Home> {
         ],
       ),
     );
-  }
-
-  List<T> map<T>(List list, Function handler) {
-    List<T> result = [];
-    for (var i = 0; i < list.length; i++) {
-      result.add(handler(i, list[i]));
-    }
-    return result;
   }
 }
 

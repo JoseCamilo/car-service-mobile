@@ -1,6 +1,6 @@
-import 'package:car_service_mobile/components/banner_carousel.dart';
-import 'package:car_service_mobile/components/banner_list.dart';
-import 'package:car_service_mobile/models/database.dart';
+import 'package:car_service_mobile/shared/widgets/banner_carousel_widget.dart';
+import 'package:car_service_mobile/shared/widgets/banner_list_widget.dart';
+import 'package:car_service_mobile/shared/models/database.dart';
 import 'package:flutter/material.dart';
 
 class FilterEletric extends StatefulWidget {
@@ -13,8 +13,8 @@ class _FilterEletricState extends State<FilterEletric> {
 
   @override
   Widget build(BuildContext context) {
-    List<ItemBannerList> listBanner = DataBase().listBanner;
-    List<ItemBannerCarousel> recomendedList = DataBase().recomendedList;
+    List<ItemBannerListWidget> listBanner = DataBase().listBanner;
+    List<ItemBannerCarouselWidget> recomendedList = DataBase().recomendedList;
 
     return Scaffold(
       appBar: AppBar(
@@ -36,7 +36,7 @@ class _FilterEletricState extends State<FilterEletric> {
             child: Padding(
               padding: const EdgeInsets.only(top: 32.0, left: 8.0),
               child: Text(
-                'Ofertas especiais',
+                'Destaques',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24.0,
@@ -49,7 +49,7 @@ class _FilterEletricState extends State<FilterEletric> {
               padding: const EdgeInsets.only(top: 16.0),
               child: Column(
                 children: <Widget>[
-                  BannerCarousel(listBanner: recomendedList),
+                  BannerCarouselWidget(listBanner: recomendedList),
                 ],
               ),
             ),
@@ -58,7 +58,7 @@ class _FilterEletricState extends State<FilterEletric> {
             child: Padding(
               padding: const EdgeInsets.only(top: 8.0, left: 8.0),
               child: Text(
-                'Lojas disponvieis',
+                'Lojas disponíveis',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24.0,

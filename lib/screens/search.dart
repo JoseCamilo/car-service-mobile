@@ -1,6 +1,5 @@
-import 'package:car_service_mobile/components/banner_carousel.dart';
-import 'package:car_service_mobile/components/banner_list.dart';
-import 'package:car_service_mobile/models/database.dart';
+import 'package:car_service_mobile/shared/widgets/banner_list_widget.dart';
+import 'package:car_service_mobile/shared/models/database.dart';
 import 'package:car_service_mobile/screens/company.dart';
 import 'package:flutter/material.dart';
 
@@ -39,8 +38,7 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
-    List<ItemBannerList> listBanner = DataBase().listBanner;
-    List<ItemBannerCarousel> recomendedList = DataBase().recomendedList;
+    List<ItemBannerListWidget> listBanner = DataBase().listBannerSearch;
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -62,7 +60,7 @@ class _SearchState extends State<Search> {
             child: Padding(
               padding: const EdgeInsets.only(top: 32.0, left: 8.0),
               child: Text(
-                'Lojas disponvieis',
+                'Lojas disponíveis',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24.0,

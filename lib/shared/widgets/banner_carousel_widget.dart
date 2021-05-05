@@ -1,21 +1,52 @@
-import 'package:car_service_mobile/models/screen_arguments.dart';
+import 'package:car_service_mobile/shared/models/screen_arguments.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:skeleton_text/skeleton_text.dart';
 
-class ItemBannerList extends StatelessWidget {
+class BannerCarouselWidget extends StatelessWidget {
+  final List<ItemBannerCarouselWidget> listBanner;
+
+  BannerCarouselWidget({
+    @required this.listBanner,
+  }) : assert(listBanner != null);
+
+  @override
+  Widget build(BuildContext context) {
+    return CarouselSlider(
+      options: CarouselOptions(
+        height: MediaQuery.of(context).size.height * 0.37,
+        viewportFraction: 0.75,
+        enableInfiniteScroll: false,
+      ),
+      items: listBanner.map((card) {
+        return Builder(builder: (BuildContext context) {
+          return Padding(
+            padding: EdgeInsets.only(
+              right: MediaQuery.of(context).size.width * 0.02,
+            ),
+            child: card,
+          );
+        });
+      }).toList(),
+    );
+  }
+}
+
+class ItemBannerCarouselWidget extends StatelessWidget {
   final String title;
   final String subtitle;
   final String assetImage;
-  final String description;
   final String sale;
+  final String description;
   final String stars;
   final String ratings;
 
-  ItemBannerList({
+  ItemBannerCarouselWidget({
     @required this.title,
     this.subtitle = '',
     this.assetImage = '',
-    this.description = '',
     this.sale = '',
+    this.description = '',
     this.stars = '',
     this.ratings = '',
   }) : assert(title != null);
@@ -35,18 +66,20 @@ class ItemBannerList extends StatelessWidget {
           description: this.description,
           address: this.subtitle,
           sale: this.sale,
+          stars: this.stars,
+          ratings: this.ratings,
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Visibility(
               visible: this.assetImage.isNotEmpty,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.33,
-                    width: MediaQuery.of(context).size.width * 0.80,
+                    height: MediaQuery.of(context).size.height * 0.25,
+                    width: MediaQuery.of(context).size.width * 0.73,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(6.0)),
                       image: DecorationImage(
@@ -93,7 +126,7 @@ class ItemBannerList extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.20,
+                              width: MediaQuery.of(context).size.width * 0.19,
                               height: MediaQuery.of(context).size.height * 0.07,
                               child: Container(
                                 decoration: BoxDecoration(
@@ -139,12 +172,13 @@ class ItemBannerList extends StatelessWidget {
               ),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                  padding: EdgeInsets.only(
+                      top: 8.0, left: MediaQuery.of(context).size.width * 0.02),
                   child: SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.79,
+                    width: MediaQuery.of(context).size.width * 0.7,
                     child: Text(
                       this.title,
                       overflow: TextOverflow.ellipsis,
@@ -162,12 +196,15 @@ class ItemBannerList extends StatelessWidget {
             Visibility(
               visible: subtitle.isNotEmpty,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                    padding: EdgeInsets.only(
+                      top: 8.0,
+                      left: MediaQuery.of(context).size.width * 0.02,
+                    ),
                     child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.79,
+                      width: MediaQuery.of(context).size.width * 0.7,
                       child: Text(
                         this.subtitle,
                         overflow: TextOverflow.ellipsis,
@@ -183,16 +220,6 @@ class ItemBannerList extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0),
-              child: Divider(
-                color: Colors.black12,
-                height: 0,
-                thickness: 1,
-                indent: 100,
-                endIndent: 100,
-              ),
-            )
           ],
         ),
       ),
@@ -206,6 +233,8 @@ class ItemBannerList extends StatelessWidget {
     String description,
     String address,
     String sale,
+    String stars,
+    String ratings,
   }) {
     Navigator.of(context).pushNamed(
       'company',
@@ -215,7 +244,87 @@ class ItemBannerList extends StatelessWidget {
         description: description,
         address: address,
         sale: sale,
+        stars: stars,
+        ratings: ratings,
       ),
+    );
+  }
+}
+
+class BannerCarouselLoadingWidget extends StatelessWidget {
+  final List<ItemBannerCarouselLoadingWidget> listBanner = [
+    new ItemBannerCarouselLoadingWidget(),
+    new ItemBannerCarouselLoadingWidget(),
+  ];
+
+  BannerCarouselLoadingWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return CarouselSlider(
+      options: CarouselOptions(
+        height: MediaQuery.of(context).size.height * 0.37,
+        viewportFraction: 0.75,
+        enableInfiniteScroll: false,
+      ),
+      items: listBanner.map((card) {
+        return Builder(builder: (BuildContext context) {
+          return Padding(
+            padding: EdgeInsets.only(
+              right: MediaQuery.of(context).size.width * 0.02,
+            ),
+            child: card,
+          );
+        });
+      }).toList(),
+    );
+  }
+}
+
+class ItemBannerCarouselLoadingWidget extends StatelessWidget {
+  ItemBannerCarouselLoadingWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          height: MediaQuery.of(context).size.height * 0.25,
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.all(Radius.circular(24.0)),
+          ),
+          child: SkeletonAnimation(
+            child: Container(),
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Container(
+          height: 20,
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.all(Radius.circular(24.0)),
+          ),
+          child: SkeletonAnimation(
+            child: Container(),
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Container(
+          height: 20,
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.all(Radius.circular(24.0)),
+          ),
+          child: SkeletonAnimation(
+            child: Container(),
+          ),
+        ),
+      ],
     );
   }
 }

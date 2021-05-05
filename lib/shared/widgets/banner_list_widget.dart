@@ -1,51 +1,21 @@
-import 'package:car_service_mobile/models/screen_arguments.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:car_service_mobile/shared/models/screen_arguments.dart';
 import 'package:flutter/material.dart';
 
-class BannerCarousel extends StatelessWidget {
-  final List<ItemBannerCarousel> listBanner;
-
-  BannerCarousel({
-    @required this.listBanner,
-  }) : assert(listBanner != null);
-
-  @override
-  Widget build(BuildContext context) {
-    return CarouselSlider(
-      options: CarouselOptions(
-        height: MediaQuery.of(context).size.height * 0.37,
-        viewportFraction: 0.75,
-        enableInfiniteScroll: false,
-      ),
-      items: listBanner.map((card) {
-        return Builder(builder: (BuildContext context) {
-          return Padding(
-            padding: EdgeInsets.only(
-              right: MediaQuery.of(context).size.width * 0.02,
-            ),
-            child: card,
-          );
-        });
-      }).toList(),
-    );
-  }
-}
-
-class ItemBannerCarousel extends StatelessWidget {
+class ItemBannerListWidget extends StatelessWidget {
   final String title;
   final String subtitle;
   final String assetImage;
-  final String sale;
   final String description;
+  final String sale;
   final String stars;
   final String ratings;
 
-  ItemBannerCarousel({
+  ItemBannerListWidget({
     @required this.title,
     this.subtitle = '',
     this.assetImage = '',
-    this.sale = '',
     this.description = '',
+    this.sale = '',
     this.stars = '',
     this.ratings = '',
   }) : assert(title != null);
@@ -69,16 +39,16 @@ class ItemBannerCarousel extends StatelessWidget {
           ratings: this.ratings,
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Visibility(
               visible: this.assetImage.isNotEmpty,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.25,
-                    width: MediaQuery.of(context).size.width * 0.73,
+                    height: MediaQuery.of(context).size.height * 0.33,
+                    width: MediaQuery.of(context).size.width * 0.80,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(6.0)),
                       image: DecorationImage(
@@ -125,7 +95,7 @@ class ItemBannerCarousel extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.19,
+                              width: MediaQuery.of(context).size.width * 0.20,
                               height: MediaQuery.of(context).size.height * 0.07,
                               child: Container(
                                 decoration: BoxDecoration(
@@ -171,13 +141,12 @@ class ItemBannerCarousel extends StatelessWidget {
               ),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(
-                      top: 8.0, left: MediaQuery.of(context).size.width * 0.02),
+                  padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                   child: SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.7,
+                    width: MediaQuery.of(context).size.width * 0.79,
                     child: Text(
                       this.title,
                       overflow: TextOverflow.ellipsis,
@@ -195,15 +164,12 @@ class ItemBannerCarousel extends StatelessWidget {
             Visibility(
               visible: subtitle.isNotEmpty,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(
-                      top: 8.0,
-                      left: MediaQuery.of(context).size.width * 0.02,
-                    ),
+                    padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                     child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.7,
+                      width: MediaQuery.of(context).size.width * 0.79,
                       child: Text(
                         this.subtitle,
                         overflow: TextOverflow.ellipsis,
@@ -219,6 +185,16 @@ class ItemBannerCarousel extends StatelessWidget {
                 ],
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: Divider(
+                color: Colors.black12,
+                height: 0,
+                thickness: 1,
+                indent: 100,
+                endIndent: 100,
+              ),
+            )
           ],
         ),
       ),
