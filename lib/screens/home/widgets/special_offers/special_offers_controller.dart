@@ -1,5 +1,5 @@
-import 'package:car_service_mobile/screens/home/widgets/special_offers/special_offers_service.dart';
 import 'package:car_service_mobile/shared/models/company_model.dart';
+import 'package:car_service_mobile/shared/services/company_service.dart';
 import 'package:flutter/material.dart';
 
 import '../../home_state.dart';
@@ -12,12 +12,12 @@ class SpecialOffersController {
 
   List<CompanyModel> companies;
 
-  final service = SpecialOffersService();
+  final service = CompanyService();
 
   void getOffers() async {
     state = HomeState.loading;
     await Future.delayed(Duration(seconds: 2));
-    companies = await service.getOffers();
+    companies = await service.getCompanies('SPECIALOFFER');
     state = HomeState.success;
   }
 }

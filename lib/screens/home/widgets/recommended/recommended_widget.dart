@@ -1,20 +1,20 @@
+import 'package:car_service_mobile/screens/home/widgets/recommended/recommended_controller.dart';
 import 'package:car_service_mobile/shared/models/company_model.dart';
 import 'package:car_service_mobile/shared/widgets/banner_carousel_widget.dart';
-import 'package:car_service_mobile/screens/home/widgets/special_offers/special_offers_controller.dart';
 import 'package:flutter/material.dart';
 
 import '../../home_state.dart';
 
-class SpecialOffersWidget extends StatefulWidget {
+class RecommendedWidget extends StatefulWidget {
   @override
-  _SpecialOffersWidgetState createState() => _SpecialOffersWidgetState();
+  _RecommendedWidgetState createState() => _RecommendedWidgetState();
 }
 
-class _SpecialOffersWidgetState extends State<SpecialOffersWidget> {
+class _RecommendedWidgetState extends State<RecommendedWidget> {
   List<ItemBannerCarouselWidget> _bannerList = [];
   List<CompanyModel> _companyList = [];
 
-  final _controller = SpecialOffersController();
+  final _controller = RecommendedController();
   @override
   void initState() {
     super.initState();
@@ -44,12 +44,12 @@ class _SpecialOffersWidgetState extends State<SpecialOffersWidget> {
   Widget build(BuildContext context) {
     if (_controller.state == HomeState.success) {
       return BannerCarouselWidget(
-        title: 'Ofertas especiais',
+        title: 'Recomendado para você',
         listBanner: _bannerList,
       );
     } else {
       return BannerCarouselLoadingWidget(
-        title: 'Ofertas especiais',
+        title: 'Recomendado para você',
       );
     }
   }

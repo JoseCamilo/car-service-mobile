@@ -5,29 +5,53 @@ import 'package:skeleton_text/skeleton_text.dart';
 
 class BannerCarouselWidget extends StatelessWidget {
   final List<ItemBannerCarouselWidget> listBanner;
+  final String title;
 
   BannerCarouselWidget({
     @required this.listBanner,
+    this.title = '',
   }) : assert(listBanner != null);
 
   @override
   Widget build(BuildContext context) {
-    return CarouselSlider(
-      options: CarouselOptions(
-        height: MediaQuery.of(context).size.height * 0.37,
-        viewportFraction: 0.75,
-        enableInfiniteScroll: false,
-      ),
-      items: listBanner.map((card) {
-        return Builder(builder: (BuildContext context) {
-          return Padding(
-            padding: EdgeInsets.only(
-              right: MediaQuery.of(context).size.width * 0.02,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 16.0, left: 8.0),
+          child: Text(
+            this.title,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24.0,
             ),
-            child: card,
-          );
-        });
-      }).toList(),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 16.0),
+          child: Column(
+            children: <Widget>[
+              CarouselSlider(
+                options: CarouselOptions(
+                  height: MediaQuery.of(context).size.height * 0.37,
+                  viewportFraction: 0.75,
+                  enableInfiniteScroll: false,
+                ),
+                items: this.listBanner.map((card) {
+                  return Builder(builder: (BuildContext context) {
+                    return Padding(
+                      padding: EdgeInsets.only(
+                        right: MediaQuery.of(context).size.width * 0.02,
+                      ),
+                      child: card,
+                    );
+                  });
+                }).toList(),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
@@ -72,104 +96,115 @@ class ItemBannerCarouselWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Visibility(
-              visible: this.assetImage.isNotEmpty,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.25,
-                    width: MediaQuery.of(context).size.width * 0.73,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                      image: DecorationImage(
-                        image: AssetImage(this.assetImage),
-                        fit: BoxFit.cover,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.25,
+                  width: MediaQuery.of(context).size.width * 0.73,
+                  child: Stack(
+                    children: [
+                      Visibility(
+                        visible: this.assetImage.isNotEmpty &&
+                            this.assetImage.contains('http'),
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * 0.25,
+                          width: MediaQuery.of(context).size.width * 0.73,
+                          child: ClipRRect(
+                            child: FadeInImage.assetNetwork(
+                              placeholder: 'assets/images/loading1.gif',
+                              image: this.assetImage,
+                              fit: BoxFit.fill,
+                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                          ),
+                        ),
                       ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Visibility(
-                          visible: this.sale.isNotEmpty,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.25,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.black54,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6.0)),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    this.sale,
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.center,
-                                    maxLines: 2,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.w600,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Visibility(
+                            visible: this.sale.isNotEmpty,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.black54,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(6.0)),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      this.sale,
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.center,
+                                      maxLines: 2,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        Visibility(
-                          visible: this.stars.isNotEmpty,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.19,
-                              height: MediaQuery.of(context).size.height * 0.07,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.black54,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6.0)),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      this.stars,
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.center,
-                                      maxLines: 1,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold,
+                          Visibility(
+                            visible: this.stars.isNotEmpty,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.19,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.07,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.black54,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(6.0)),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        this.stars,
+                                        overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.center,
+                                        maxLines: 1,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      '$ratings avaliações',
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.start,
-                                      maxLines: 2,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 10.0,
-                                        fontWeight: FontWeight.w300,
+                                      Text(
+                                        '$ratings avaliações',
+                                        overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.start,
+                                        maxLines: 2,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 10.0,
+                                          fontWeight: FontWeight.w300,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
+                        ],
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -256,27 +291,50 @@ class BannerCarouselLoadingWidget extends StatelessWidget {
     new ItemBannerCarouselLoadingWidget(),
     new ItemBannerCarouselLoadingWidget(),
   ];
+  final String title;
 
-  BannerCarouselLoadingWidget();
+  BannerCarouselLoadingWidget({this.title = ''});
 
   @override
   Widget build(BuildContext context) {
-    return CarouselSlider(
-      options: CarouselOptions(
-        height: MediaQuery.of(context).size.height * 0.37,
-        viewportFraction: 0.75,
-        enableInfiniteScroll: false,
-      ),
-      items: listBanner.map((card) {
-        return Builder(builder: (BuildContext context) {
-          return Padding(
-            padding: EdgeInsets.only(
-              right: MediaQuery.of(context).size.width * 0.02,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 16.0, left: 8.0),
+          child: Text(
+            this.title,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24.0,
             ),
-            child: card,
-          );
-        });
-      }).toList(),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 16.0),
+          child: Column(
+            children: <Widget>[
+              CarouselSlider(
+                options: CarouselOptions(
+                  height: MediaQuery.of(context).size.height * 0.37,
+                  viewportFraction: 0.75,
+                  enableInfiniteScroll: false,
+                ),
+                items: this.listBanner.map((card) {
+                  return Builder(builder: (BuildContext context) {
+                    return Padding(
+                      padding: EdgeInsets.only(
+                        right: MediaQuery.of(context).size.width * 0.02,
+                      ),
+                      child: card,
+                    );
+                  });
+                }).toList(),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

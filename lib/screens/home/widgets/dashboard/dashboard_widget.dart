@@ -1,5 +1,54 @@
 import 'package:flutter/material.dart';
 
+class DashboardWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    List<ItemDashboardWidget> _dashboardGridHome = [
+      ItemDashboardWidget(
+        title: 'Lavagem',
+        icon: Icons.auto_awesome,
+        onClick: () => _showWash(context),
+      ),
+      ItemDashboardWidget(
+        title: 'Pneu',
+        icon: Icons.album_outlined,
+        onClick: () => _showTire(context),
+      ),
+      ItemDashboardWidget(
+        title: 'Óleo',
+        icon: Icons.invert_colors_on_outlined,
+        onClick: () => _showOil(context),
+      ),
+      ItemDashboardWidget(
+        title: 'Elétrica',
+        icon: Icons.flash_on_outlined,
+        onClick: () => _showEletric(context),
+      ),
+      ItemDashboardWidget(
+        title: 'Mecânica',
+        icon: Icons.build_outlined,
+        onClick: () => _showMechanics(context),
+      ),
+      ItemDashboardWidget(
+        title: 'Funilaria',
+        icon: Icons.auto_fix_high,
+        onClick: () => _showBody(context),
+      ),
+    ];
+    return SliverGrid(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        mainAxisSpacing: 0,
+        crossAxisSpacing: 0,
+        childAspectRatio: 1.5,
+        crossAxisCount: 3,
+      ),
+      delegate: SliverChildListDelegate(
+        _dashboardGridHome,
+      ),
+    );
+  }
+}
+
 class ItemDashboardWidget extends StatelessWidget {
   final String title;
   final IconData icon;
@@ -50,4 +99,28 @@ class ItemDashboardWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+void _showWash(BuildContext context) {
+  Navigator.of(context).pushNamed('filter-wash');
+}
+
+void _showTire(BuildContext context) {
+  Navigator.of(context).pushNamed('filter-tire');
+}
+
+void _showOil(BuildContext context) {
+  Navigator.of(context).pushNamed('filter-oil');
+}
+
+void _showEletric(BuildContext context) {
+  Navigator.of(context).pushNamed('filter-eletric');
+}
+
+void _showMechanics(BuildContext context) {
+  Navigator.of(context).pushNamed('filter-mechanics');
+}
+
+void _showBody(BuildContext context) {
+  Navigator.of(context).pushNamed('filter-body');
 }

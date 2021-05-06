@@ -98,17 +98,11 @@ class ItemBannerPromotionsWidget extends StatelessWidget {
             children: <Widget>[
               Visibility(
                 visible: this.assetImage.isNotEmpty,
-                child: Stack(
-                  children: <Widget>[
-                    Center(
-                      child: FadeInImage.memoryNetwork(
-                        placeholder: kTransparentImage,
-                        image: this.assetImage,
-                        fit: BoxFit.cover,
-                        height: 140,
-                      ),
-                    ),
-                  ],
+                child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: this.assetImage,
+                  fit: BoxFit.cover,
+                  height: 140,
                 ),
               )
             ],

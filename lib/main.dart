@@ -25,7 +25,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   List<Widget> _widgets = <Widget>[
-    HomeBuilderNavigator(),
+    HomePageBuilderNavigator(),
     SearchBuilderNavigator(),
     Icon(Icons.time_to_leave),
     Icon(Icons.access_alarm),
