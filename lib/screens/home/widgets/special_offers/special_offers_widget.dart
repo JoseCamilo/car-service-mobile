@@ -11,10 +11,17 @@ class SpecialOffersWidget extends StatefulWidget {
 }
 
 class _SpecialOffersWidgetState extends State<SpecialOffersWidget> {
+  final _controller = SpecialOffersController();
   List<ItemBannerCarouselWidget> _bannerList = [];
   List<CompanyModel> _companyList = [];
 
-  final _controller = SpecialOffersController();
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
+
   @override
   void initState() {
     super.initState();

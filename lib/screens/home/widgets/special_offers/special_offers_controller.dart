@@ -16,8 +16,7 @@ class SpecialOffersController {
 
   void getOffers() async {
     state = HomeState.loading;
-    await Future.delayed(Duration(seconds: 2));
-    companies = await service.getCompanies('SPECIALOFFER');
+    companies = await service.getCompanies(subscription: 'SPECIALOFFER');
     state = HomeState.success;
   }
 }

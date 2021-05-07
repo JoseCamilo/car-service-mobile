@@ -11,10 +11,17 @@ class OpenWidget extends StatefulWidget {
 }
 
 class _OpenWidgetState extends State<OpenWidget> {
+  final _controller = OpenController();
   List<ItemBannerCarouselWidget> _bannerList = [];
   List<CompanyModel> _companyList = [];
 
-  final _controller = OpenController();
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
+
   @override
   void initState() {
     super.initState();

@@ -16,7 +16,6 @@ class BannerPromotionsController {
 
   void getPromotions() async {
     state = HomeState.loading;
-    await Future.delayed(Duration(seconds: 2));
     promotions = await service.getPromotions();
     state = HomeState.success;
   }

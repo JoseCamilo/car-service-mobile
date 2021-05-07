@@ -11,10 +11,17 @@ class RecommendedWidget extends StatefulWidget {
 }
 
 class _RecommendedWidgetState extends State<RecommendedWidget> {
+  final _controller = RecommendedController();
   List<ItemBannerCarouselWidget> _bannerList = [];
   List<CompanyModel> _companyList = [];
 
-  final _controller = RecommendedController();
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
+
   @override
   void initState() {
     super.initState();

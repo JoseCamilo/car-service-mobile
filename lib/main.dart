@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:car_service_mobile/screens/home/home_page.dart';
-import 'package:car_service_mobile/screens/search.dart';
+import 'package:car_service_mobile/screens/search/search_page.dart';
 import 'package:flutter/material.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -26,7 +26,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   List<Widget> _widgets = <Widget>[
     HomePageBuilderNavigator(),
-    SearchBuilderNavigator(),
+    SearchPageBuilderNavigator(),
     Icon(Icons.time_to_leave),
     Icon(Icons.access_alarm),
   ];

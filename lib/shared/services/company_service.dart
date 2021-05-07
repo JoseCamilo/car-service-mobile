@@ -12,9 +12,11 @@ class CompanyService {
     'x-apikey': '70b0bc03677bc2e4b56c730aa873a09c34c71'
   };
 
-  Future<List<CompanyModel>> getCompanies(String subscription) async {
-    final url = Uri.parse(
-        'https://mobademocs-464e.restdb.io/rest/companies?q={"subscription":"$subscription"}');
+  Future<List<CompanyModel>> getCompanies({String subscription = ''}) async {
+    final query =
+        subscription.isEmpty ? '' : 'q={"subscription":"$subscription"}';
+    final url =
+        Uri.parse('https://mobademocs-464e.restdb.io/rest/companies?$query');
 
     try {
       final response = await client.read(url, headers: headers);

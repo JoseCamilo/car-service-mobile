@@ -11,10 +11,17 @@ class BannerPromotionsWidget extends StatefulWidget {
 }
 
 class _BannerPromotionsWidgetState extends State<BannerPromotionsWidget> {
+  final controller = BannerPromotionsController();
   int _currentIndex = 0;
   List _carouselList = [];
 
-  final controller = BannerPromotionsController();
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
