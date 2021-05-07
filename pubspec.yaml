@@ -32,6 +32,7 @@ dependencies:
   http: ^0.13.2
   transparent_image: ^2.0.0
   skeleton_text: ^3.0.0
+  auto_animated: ^3.0.0
 
 dev_dependencies:
   flutter_test:

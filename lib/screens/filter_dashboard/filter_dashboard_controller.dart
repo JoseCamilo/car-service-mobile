@@ -48,6 +48,10 @@ class FilterDashboardController {
         );
       }
     }
-    state = FilterDashboardState.success;
+    if (companies.length > 0) {
+      state = FilterDashboardState.success;
+    } else {
+      state = FilterDashboardState.empty;
+    }
   }
 }

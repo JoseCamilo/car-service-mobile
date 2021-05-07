@@ -4,12 +4,6 @@ import 'package:car_service_mobile/screens/home/widgets/recommended/recommended_
 import 'package:car_service_mobile/screens/home/widgets/dashboard/dashboard_widget.dart';
 import 'package:car_service_mobile/screens/home/widgets/special_offers/special_offers_widget.dart';
 import 'package:car_service_mobile/screens/company.dart';
-import 'package:car_service_mobile/screens/filter_body.dart';
-import 'package:car_service_mobile/screens/filter_eletric.dart';
-import 'package:car_service_mobile/screens/filter_mechanics.dart';
-import 'package:car_service_mobile/screens/filter_oil.dart';
-import 'package:car_service_mobile/screens/filter_tire.dart';
-import 'package:car_service_mobile/screens/filter_wash.dart';
 import 'package:car_service_mobile/screens/home/widgets/banner_promotions/banner_promotions_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -39,27 +33,48 @@ class HomePageBuilderNavigator extends StatelessWidget {
 
           case 'filter-tire':
             return MaterialPageRoute(
-                builder: (context) => FilterTire(), settings: settings);
+              builder: (context) => FilterDashboardPage(
+                title: 'Pneu',
+                subscription: 'TIRE',
+              ),
+              settings: settings,
+            );
             break;
 
           case 'filter-oil':
             return MaterialPageRoute(
-                builder: (context) => FilterOil(), settings: settings);
+                builder: (context) => FilterDashboardPage(
+                      title: 'Óleo',
+                      subscription: 'OIL',
+                    ),
+                settings: settings);
             break;
 
           case 'filter-eletric':
             return MaterialPageRoute(
-                builder: (context) => FilterEletric(), settings: settings);
+                builder: (context) => FilterDashboardPage(
+                      title: 'Elétrica',
+                      subscription: 'ELETRIC',
+                    ),
+                settings: settings);
             break;
 
           case 'filter-mechanics':
             return MaterialPageRoute(
-                builder: (context) => FilterMechanics(), settings: settings);
+                builder: (context) => FilterDashboardPage(
+                      title: 'Mecânica',
+                      subscription: 'MECHANIC',
+                    ),
+                settings: settings);
             break;
 
           case 'filter-body':
             return MaterialPageRoute(
-                builder: (context) => FilterBody(), settings: settings);
+                builder: (context) => FilterDashboardPage(
+                      title: 'Funilaria',
+                      subscription: 'BODY',
+                    ),
+                settings: settings);
             break;
 
           case 'company':
