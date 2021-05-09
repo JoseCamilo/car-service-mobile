@@ -1,4 +1,4 @@
-package com.example.car_service_mobile
+package com.jcem.autocenter
 
 import io.flutter.embedding.android.FlutterActivity
 

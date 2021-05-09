@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "364948485956",
+    "project_id": "car-service-96661",
+    "storage_bucket": "car-service-96661.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364948485956:android:3818c2237f085f28bfc911",
+        "android_client_info": {
+          "package_name": "com.jcem.autocenter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "364948485956-tb0a7l39h6kkt5n6cmnk5vin3ed7kvuq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfnfxZxR-ZlBUzZ38sireLloZz0Mws-F4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "364948485956-tb0a7l39h6kkt5n6cmnk5vin3ed7kvuq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

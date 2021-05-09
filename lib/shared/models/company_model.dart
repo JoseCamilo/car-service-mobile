@@ -6,7 +6,7 @@ class CompanyModel {
   final String assetImage;
   final String description;
   final String sale;
-  final int stars;
+  final double stars;
   final int ratings;
   final List<dynamic> subscription;
 

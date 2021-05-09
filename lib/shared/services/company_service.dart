@@ -1,50 +1,34 @@
-import 'dart:convert';
-
 import 'package:car_service_mobile/shared/models/company_model.dart';
 import 'package:car_service_mobile/shared/models/promotion_model.dart';
-
-import 'package:http/http.dart' as http;
-import 'package:http/retry.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CompanyService {
-  final client = RetryClient(http.Client());
-  final Map<String, String> headers = {
-    'x-apikey': '70b0bc03677bc2e4b56c730aa873a09c34c71'
-  };
+  CollectionReference _companiesRef =
+      FirebaseFirestore.instance.collection('companies');
+  CollectionReference _promotionsRef =
+      FirebaseFirestore.instance.collection('banner_home');
 
   Future<List<CompanyModel>> getCompanies({String subscription = ''}) async {
-    final query =
-        subscription.isEmpty ? '' : 'q={"subscription":"$subscription"}';
-    final url =
-        Uri.parse('https://mobademocs-464e.restdb.io/rest/companies?$query');
-
-    try {
-      final response = await client.read(url, headers: headers);
-      final list = jsonDecode(response) as List;
-      for (var i = 0; i < list.length; i++) {
-        list[i]["index"] = i;
-      }
-      final result = list.map((e) => CompanyModel.fromMap(e)).toList();
-      return result;
-    } finally {
-      client.close();
+    QuerySnapshot querySnapshot = await _companiesRef
+        .where('subscription', arrayContains: subscription)
+        .get();
+    final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
+    final list = []..addAll(allData);
+    for (var i = 0; i < list.length; i++) {
+      list[i]["index"] = i;
     }
+    final result = list.map((e) => CompanyModel.fromMap(e)).toList();
+    return result;
   }
 
   Future<List<PromotionModel>> getPromotions() async {
-    final url =
-        Uri.parse('http://mobademocs-464e.restdb.io/rest/banner-home-carousel');
-
-    try {
-      final response = await client.read(url, headers: headers);
-      final list = jsonDecode(response) as List;
-      for (var i = 0; i < list.length; i++) {
-        list[i]["index"] = i;
-      }
-      final result = list.map((e) => PromotionModel.fromMap(e)).toList();
-      return result;
-    } finally {
-      client.close();
+    QuerySnapshot querySnapshot = await _promotionsRef.get();
+    final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
+    final list = []..addAll(allData);
+    for (var i = 0; i < list.length; i++) {
+      list[i]["index"] = i;
     }
+    final result = list.map((e) => PromotionModel.fromMap(e)).toList();
+    return result;
   }
 }

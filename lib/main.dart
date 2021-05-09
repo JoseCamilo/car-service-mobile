@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:car_service_mobile/screens/home/home_page.dart';
 import 'package:car_service_mobile/screens/search/search_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -14,6 +15,7 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = new MyHttpOverrides();
   runApp(MyApp());
 }
@@ -24,6 +26,41 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      // Initialize FlutterFire:
+      future: _initialization,
+      builder: (context, snapshot) {
+        // Check for errors
+        if (snapshot.hasError) {
+          return Text('Erro Firebase');
+        }
+
+        // Once complete, show your application
+        if (snapshot.connectionState == ConnectionState.done) {
+          return MyAppPage();
+        }
+
+        // Otherwise, show something whilst waiting for initialization to complete
+        return MaterialApp(
+          home: Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class MyAppPage extends StatefulWidget {
+  @override
+  _MyAppPageState createState() => _MyAppPageState();
+}
+
+class _MyAppPageState extends State<MyAppPage> {
   List<Widget> _widgets = <Widget>[
     HomePageBuilderNavigator(),
     SearchPageBuilderNavigator(),
