@@ -1,5 +1,6 @@
 import 'package:car_service_mobile/screens/home/widgets/banner_promotions/item_banner_promotions_widget.dart';
 import 'package:car_service_mobile/screens/home/widgets/banner_promotions/banner_promotions_controller.dart';
+import 'package:car_service_mobile/shared/models/promotion_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class BannerPromotionsWidget extends StatefulWidget {
 class _BannerPromotionsWidgetState extends State<BannerPromotionsWidget> {
   final controller = BannerPromotionsController();
   int _currentIndex = 0;
-  List _carouselList = [];
+  List<PromotionModel> _carouselList = [];
 
   @override
   void setState(fn) {
@@ -68,7 +69,16 @@ class _BannerPromotionsWidgetState extends State<BannerPromotionsWidget> {
                         title: item.title,
                         subtitle: item.subtitle,
                         assetImage: item.assetImage,
-                        onClick: () => {},
+                        onClick: () => {
+                          print(item.subscription),
+                          Navigator.of(context).pushNamed(
+                            'filter-dashboard',
+                            arguments: {
+                              'title': '${item.title} ${item.subtitle}',
+                              'subscription': item.subscription,
+                            },
+                          ),
+                        },
                         color: item.index,
                       ),
                     ),

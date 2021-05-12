@@ -18,45 +18,9 @@ class ItemBannerPromotionsWidget extends StatelessWidget {
   })  : assert(title != null),
         assert(onClick != null);
 
-  final List _colorsCarousel = [
-    [
-      Color(0xffff4000),
-      Color(0xffffcc66),
-    ],
-    [
-      Color(0xFF008AC6),
-      Color(0xFF00BFFF),
-    ],
-    [
-      Color(0xFFDD1800),
-      Color(0xFFFF5F37),
-    ],
-    [
-      Color(0xff5f2c82),
-      Color(0xff49a09d),
-    ],
-    [
-      Color(0xffff4000),
-      Color(0xffffcc66),
-    ],
-    [
-      Color(0xFF008AC6),
-      Color(0xFF00BFFF),
-    ],
-    [
-      Color(0xFFDD1800),
-      Color(0xFFFF5F37),
-    ],
-    [
-      Color(0xff5f2c82),
-      Color(0xff49a09d),
-    ],
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(left: 16.0, right: 16.0),
+    return Ink(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(24.0)),
         gradient: LinearGradient(
@@ -66,48 +30,55 @@ class ItemBannerPromotionsWidget extends StatelessWidget {
           colors: _colorsCarousel[this.color],
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                width: MediaQuery.of(context).size.width * 0.30,
-                child: Text(this.title,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold)),
+      child: InkWell(
+        borderRadius: BorderRadius.all(Radius.circular(24.0)),
+        onTap: this.onClick,
+        child: Padding(
+          padding: EdgeInsets.only(left: 16.0, right: 16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.30,
+                    child: Text(this.title,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold)),
+                  ),
+                  Visibility(
+                    visible: this.subtitle.isNotEmpty,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.30,
+                      child: Text(this.subtitle,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w600)),
+                    ),
+                  ),
+                ],
               ),
-              Visibility(
-                visible: this.subtitle.isNotEmpty,
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.30,
-                  child: Text(this.subtitle,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600)),
-                ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Visibility(
+                    visible: this.assetImage.isNotEmpty,
+                    child: FadeInImage.memoryNetwork(
+                      placeholder: kTransparentImage,
+                      image: this.assetImage,
+                      fit: BoxFit.cover,
+                      height: 140,
+                    ),
+                  )
+                ],
               ),
             ],
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Visibility(
-                visible: this.assetImage.isNotEmpty,
-                child: FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: this.assetImage,
-                  fit: BoxFit.cover,
-                  height: 140,
-                ),
-              )
-            ],
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -134,3 +105,94 @@ class ItemBannerPromotionsLoadingWidget extends StatelessWidget {
     );
   }
 }
+
+final List _colorsCarousel = [
+  [
+    Color(0xffff4000),
+    Color(0xffffcc66),
+  ],
+  [
+    Color(0xFF008AC6),
+    Color(0xFF00BFFF),
+  ],
+  [
+    Color(0xFFDD1800),
+    Color(0xFFFF5F37),
+  ],
+  [
+    Color(0xff5f2c82),
+    Color(0xff49a09d),
+  ],
+  [
+    Color(0xFF008AC6),
+    Color(0xFF00BFFF),
+  ],
+  [
+    Color(0xFFDD1800),
+    Color(0xFFFF5F37),
+  ],
+  [
+    Color(0xff5f2c82),
+    Color(0xff49a09d),
+  ],
+  [
+    Color(0xFF008AC6),
+    Color(0xFF00BFFF),
+  ],
+  [
+    Color(0xFFDD1800),
+    Color(0xFFFF5F37),
+  ],
+  [
+    Color(0xff5f2c82),
+    Color(0xff49a09d),
+  ],
+  [
+    Color(0xFF008AC6),
+    Color(0xFF00BFFF),
+  ],
+  [
+    Color(0xFFDD1800),
+    Color(0xFFFF5F37),
+  ],
+  [
+    Color(0xff5f2c82),
+    Color(0xff49a09d),
+  ],
+  [
+    Color(0xFF008AC6),
+    Color(0xFF00BFFF),
+  ],
+  [
+    Color(0xFFDD1800),
+    Color(0xFFFF5F37),
+  ],
+  [
+    Color(0xff5f2c82),
+    Color(0xff49a09d),
+  ],
+  [
+    Color(0xFF008AC6),
+    Color(0xFF00BFFF),
+  ],
+  [
+    Color(0xFFDD1800),
+    Color(0xFFFF5F37),
+  ],
+  [
+    Color(0xff5f2c82),
+    Color(0xff49a09d),
+  ],
+  [
+    Color(0xFF008AC6),
+    Color(0xFF00BFFF),
+  ],
+  [
+    Color(0xFFDD1800),
+    Color(0xFFFF5F37),
+  ],
+  [
+    Color(0xff5f2c82),
+    Color(0xff49a09d),
+  ],
+];
