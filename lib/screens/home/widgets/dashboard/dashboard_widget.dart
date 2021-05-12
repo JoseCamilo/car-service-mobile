@@ -102,25 +102,61 @@ class ItemDashboardWidget extends StatelessWidget {
 }
 
 void _showWash(BuildContext context) {
-  Navigator.of(context).pushNamed('filter-wash');
+  Navigator.of(context).pushNamed(
+    'filter-dashboard',
+    arguments: {
+      'title': 'Lavagem',
+      'subscription': 'WASH',
+    },
+  );
 }
 
 void _showTire(BuildContext context) {
-  Navigator.of(context).pushNamed('filter-tire');
+  Navigator.of(context).pushNamed(
+    'filter-dashboard',
+    arguments: {
+      'title': 'Pneu',
+      'subscription': 'TIRE',
+    },
+  );
 }
 
 void _showOil(BuildContext context) {
-  Navigator.of(context).pushNamed('filter-oil');
+  Navigator.of(context).pushNamed(
+    'filter-dashboard',
+    arguments: {
+      'title': 'Óleo',
+      'subscription': 'OIL',
+    },
+  );
 }
 
 void _showEletric(BuildContext context) {
-  Navigator.of(context).pushNamed('filter-eletric');
+  Navigator.of(context).pushNamed(
+    'filter-dashboard',
+    arguments: {
+      'title': 'Elétrica',
+      'subscription': 'ELETRIC',
+    },
+  );
 }
 
 void _showMechanics(BuildContext context) {
-  Navigator.of(context).pushNamed('filter-mechanics');
+  Navigator.of(context).pushNamed(
+    'filter-dashboard',
+    arguments: {
+      'title': 'Mecânica',
+      'subscription': 'MECHANIC',
+    },
+  );
 }
 
 void _showBody(BuildContext context) {
-  Navigator.of(context).pushNamed('filter-body');
+  Navigator.of(context).pushNamed(
+    'filter-dashboard',
+    arguments: {
+      'title': 'Funilaria',
+      'subscription': 'BODY',
+    },
+  );
 }

@@ -21,58 +21,12 @@ class HomePageBuilderNavigator extends StatelessWidget {
                 builder: (context) => HomePage(), settings: settings);
             break;
 
-          case 'filter-wash':
-            return MaterialPageRoute(
-              builder: (context) => FilterDashboardPage(
-                title: 'Lavagem',
-                subscription: 'WASH',
-              ),
-              settings: settings,
-            );
-            break;
-
-          case 'filter-tire':
-            return MaterialPageRoute(
-              builder: (context) => FilterDashboardPage(
-                title: 'Pneu',
-                subscription: 'TIRE',
-              ),
-              settings: settings,
-            );
-            break;
-
-          case 'filter-oil':
+          case 'filter-dashboard':
+            final arguments = settings.arguments as Map;
             return MaterialPageRoute(
                 builder: (context) => FilterDashboardPage(
-                      title: 'Óleo',
-                      subscription: 'OIL',
-                    ),
-                settings: settings);
-            break;
-
-          case 'filter-eletric':
-            return MaterialPageRoute(
-                builder: (context) => FilterDashboardPage(
-                      title: 'Elétrica',
-                      subscription: 'ELETRIC',
-                    ),
-                settings: settings);
-            break;
-
-          case 'filter-mechanics':
-            return MaterialPageRoute(
-                builder: (context) => FilterDashboardPage(
-                      title: 'Mecânica',
-                      subscription: 'MECHANIC',
-                    ),
-                settings: settings);
-            break;
-
-          case 'filter-body':
-            return MaterialPageRoute(
-                builder: (context) => FilterDashboardPage(
-                      title: 'Funilaria',
-                      subscription: 'BODY',
+                      title: arguments['title'],
+                      subscription: arguments['subscription'],
                     ),
                 settings: settings);
             break;
