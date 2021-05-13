@@ -170,7 +170,7 @@ class ItemBannerCarouselWidget extends StatelessWidget {
                                             .replaceAll('.', ','),
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 24.0,
+                                          fontSize: 20.0,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
