@@ -21,15 +21,7 @@ class SearchController {
     companies = await service.getCompanies();
     for (var i = 0; i < companies.length; i++) {
       storeList.add(
-        ItemBannerListWidget(
-          title: companies[i].title,
-          subtitle: companies[i].subtitle,
-          description: companies[i].description,
-          assetImage: companies[i].assetImage,
-          sale: companies[i].sale,
-          ratings: companies[i].ratings.toString(),
-          stars: companies[i].stars.toString(),
-        ),
+        ItemBannerListWidget(company: companies[i]),
       );
     }
     if (companies.length > 0) {

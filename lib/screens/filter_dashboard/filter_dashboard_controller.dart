@@ -23,29 +23,11 @@ class FilterDashboardController {
     companies = await service.getCompanies(subscription: subscription);
     for (var i = 0; i < companies.length; i++) {
       storeList.add(
-        ItemBannerListWidget(
-          title: companies[i].title,
-          subtitle: companies[i].subtitle,
-          description: companies[i].description,
-          assetImage: companies[i].assetImage,
-          sale: companies[i].sale,
-          ratings: companies[i].ratings.toString(),
-          stars: companies[i].stars.toString(),
-          tags: companies[i].tags,
-        ),
+        ItemBannerListWidget(company: companies[i]),
       );
       if (companies[i].subscription.contains('RECOMMENDED')) {
         recomendedList.add(
-          ItemBannerCarouselWidget(
-            title: companies[i].title,
-            subtitle: companies[i].subtitle,
-            description: companies[i].description,
-            assetImage: companies[i].assetImage,
-            sale: companies[i].sale,
-            ratings: companies[i].ratings.toString(),
-            stars: companies[i].stars.toString(),
-            tags: companies[i].tags,
-          ),
+          ItemBannerCarouselWidget(company: companies[i]),
         );
       }
     }

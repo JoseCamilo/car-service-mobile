@@ -4,10 +4,16 @@ class ItemServicesCompanyWidget extends StatelessWidget {
   final String title;
   final String description;
   final String price;
+  final String offer;
   final String time;
 
-  ItemServicesCompanyWidget(
-      {this.title, this.description, this.price, this.time});
+  ItemServicesCompanyWidget({
+    this.title = '',
+    this.description = '',
+    this.price = '',
+    this.time = '',
+    this.offer = '',
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +28,7 @@ class ItemServicesCompanyWidget extends StatelessWidget {
               children: [
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
@@ -55,21 +62,65 @@ class ItemServicesCompanyWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.67,
-                        child: Text(
-                          'R\$ $price',
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          style: TextStyle(
-                            color: Colors.black87,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
+                    Visibility(
+                      visible: this.offer.isEmpty,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.67,
+                          child: Text(
+                            '$price',
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Visibility(
+                          visible: this.offer.isNotEmpty,
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                top: 8.0, bottom: 8.0, right: 8.0),
+                            child: Text(
+                              '$price',
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.lineThrough,
+                                decorationThickness: 2,
+                                decorationColor: Colors.red,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: this.offer.isNotEmpty,
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                            child: Text(
+                              '$offer',
+                              maxLines: 1,
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

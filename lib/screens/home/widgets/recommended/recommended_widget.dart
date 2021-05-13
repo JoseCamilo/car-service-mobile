@@ -32,16 +32,7 @@ class _RecommendedWidgetState extends State<RecommendedWidget> {
         _companyList = _controller.companies;
         for (var i = 0; i < _companyList.length; i++) {
           _bannerList.add(
-            new ItemBannerCarouselWidget(
-              title: _companyList[i].title,
-              subtitle: _companyList[i].subtitle,
-              assetImage: _companyList[i].assetImage,
-              sale: _companyList[i].sale,
-              description: _companyList[i].description,
-              stars: _companyList[i].stars.toString(),
-              ratings: _companyList[i].ratings.toString(),
-              tags: _companyList[i].tags,
-            ),
+            new ItemBannerCarouselWidget(company: _companyList[i]),
           );
         }
       });

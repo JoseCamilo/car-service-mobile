@@ -1,4 +1,4 @@
-import 'package:car_service_mobile/shared/models/screen_arguments.dart';
+import 'package:car_service_mobile/shared/models/company_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:skeleton_text/skeleton_text.dart';
@@ -57,25 +57,9 @@ class BannerCarouselWidget extends StatelessWidget {
 }
 
 class ItemBannerCarouselWidget extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final String assetImage;
-  final String sale;
-  final String description;
-  final String stars;
-  final String ratings;
-  final List<dynamic> tags;
+  final CompanyModel company;
 
-  ItemBannerCarouselWidget({
-    @required this.title,
-    this.subtitle = '',
-    this.assetImage = '',
-    this.sale = '',
-    this.description = '',
-    this.stars = '',
-    this.ratings = '',
-    this.tags,
-  }) : assert(title != null);
+  ItemBannerCarouselWidget({@required this.company});
 
   @override
   Widget build(BuildContext context) {
@@ -87,14 +71,7 @@ class ItemBannerCarouselWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         onTap: () => _showCompany(
           context: context,
-          name: this.title,
-          image: this.assetImage,
-          description: this.description,
-          address: this.subtitle,
-          sale: this.sale,
-          stars: this.stars,
-          ratings: this.ratings,
-          tags: this.tags,
+          company: this.company,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -108,15 +85,15 @@ class ItemBannerCarouselWidget extends StatelessWidget {
                   child: Stack(
                     children: [
                       Visibility(
-                        visible: this.assetImage.isNotEmpty &&
-                            this.assetImage.contains('http'),
+                        visible: this.company.assetImage[0].isNotEmpty &&
+                            this.company.assetImage[0].contains('http'),
                         child: Container(
                           height: MediaQuery.of(context).size.height * 0.25,
                           width: MediaQuery.of(context).size.width * 0.73,
                           child: ClipRRect(
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/images/loading1.gif',
-                              image: this.assetImage,
+                              image: this.company.assetImage[0],
                               fit: BoxFit.fill,
                             ),
                             borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -128,7 +105,7 @@ class ItemBannerCarouselWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Visibility(
-                            visible: this.sale.isNotEmpty,
+                            visible: this.company.sale.isNotEmpty,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: SizedBox(
@@ -142,7 +119,7 @@ class ItemBannerCarouselWidget extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      this.sale,
+                                      this.company.sale,
                                       overflow: TextOverflow.ellipsis,
                                       textAlign: TextAlign.center,
                                       maxLines: 2,
@@ -158,7 +135,7 @@ class ItemBannerCarouselWidget extends StatelessWidget {
                             ),
                           ),
                           Visibility(
-                            visible: this.stars.isNotEmpty,
+                            visible: this.company.stars != null,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: SizedBox(
@@ -175,7 +152,7 @@ class ItemBannerCarouselWidget extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        this.stars,
+                                        this.company.stars.toString(),
                                         overflow: TextOverflow.ellipsis,
                                         textAlign: TextAlign.center,
                                         maxLines: 1,
@@ -186,7 +163,7 @@ class ItemBannerCarouselWidget extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        '$ratings avaliações',
+                                        '$company.ratings avaliações',
                                         overflow: TextOverflow.ellipsis,
                                         textAlign: TextAlign.start,
                                         maxLines: 2,
@@ -218,7 +195,7 @@ class ItemBannerCarouselWidget extends StatelessWidget {
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width * 0.7,
                     child: Text(
-                      this.title,
+                      this.company.title,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(
@@ -232,7 +209,7 @@ class ItemBannerCarouselWidget extends StatelessWidget {
               ],
             ),
             Visibility(
-              visible: subtitle.isNotEmpty,
+              visible: this.company.subtitle.isNotEmpty,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -244,7 +221,7 @@ class ItemBannerCarouselWidget extends StatelessWidget {
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width * 0.7,
                       child: Text(
-                        this.subtitle,
+                        this.company.subtitle,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: TextStyle(
@@ -266,27 +243,11 @@ class ItemBannerCarouselWidget extends StatelessWidget {
 
   _showCompany({
     BuildContext context,
-    String name,
-    String image,
-    String description,
-    String address,
-    String sale,
-    String stars,
-    String ratings,
-    List<dynamic> tags,
+    CompanyModel company,
   }) {
     Navigator.of(context).pushNamed(
       'company',
-      arguments: ScreenArguments(
-        title: name,
-        image: image,
-        description: description,
-        address: address,
-        sale: sale,
-        stars: stars,
-        ratings: ratings,
-        tags: tags,
-      ),
+      arguments: company,
     );
   }
 }
