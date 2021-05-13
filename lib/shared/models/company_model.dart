@@ -95,6 +95,9 @@ class ServiceCompanyModel {
   }
 
   factory ServiceCompanyModel.fromMap(Map<String, dynamic> map) {
+    if (map['offer'] == null) {
+      map['offer'] = '';
+    }
     return ServiceCompanyModel(
       map['title'],
       map['description'],
