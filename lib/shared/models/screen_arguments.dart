@@ -9,6 +9,8 @@ class ScreenArguments {
   final String sale;
   final String stars;
   final String ratings;
+  final List<dynamic> subscription;
+  final List<dynamic> tags;
 
   ScreenArguments(
       {this.id,
@@ -20,5 +22,12 @@ class ScreenArguments {
       this.sale,
       this.stars,
       this.ratings,
-      this.address});
+      this.address,
+      this.subscription,
+      this.tags});
+
+  @override
+  String toString() {
+    return 'ScreenArguments(id: $id, title: $title, subtitle: $subtitle, message: $message, image: $image, description: $description, address: $address, sale: $sale, stars: $stars, ratings: $ratings, subscription: $subscription, tags: $tags)';
+  }
 }

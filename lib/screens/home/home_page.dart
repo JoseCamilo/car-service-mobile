@@ -3,7 +3,7 @@ import 'package:car_service_mobile/screens/home/widgets/open/open_widget.dart';
 import 'package:car_service_mobile/screens/home/widgets/recommended/recommended_widget.dart';
 import 'package:car_service_mobile/screens/home/widgets/dashboard/dashboard_widget.dart';
 import 'package:car_service_mobile/screens/home/widgets/special_offers/special_offers_widget.dart';
-import 'package:car_service_mobile/screens/company.dart';
+import 'package:car_service_mobile/screens/company/company_page.dart';
 import 'package:car_service_mobile/screens/home/widgets/banner_promotions/banner_promotions_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +33,7 @@ class HomePageBuilderNavigator extends StatelessWidget {
 
           case 'company':
             return MaterialPageRoute(
-                builder: (context) => Company(), settings: settings);
+                builder: (context) => CompanyPage(), settings: settings);
             break;
 
           default:

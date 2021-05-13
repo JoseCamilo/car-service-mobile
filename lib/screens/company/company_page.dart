@@ -1,11 +1,14 @@
 import 'package:car_service_mobile/shared/widgets/services_company_widget.dart';
 import 'package:car_service_mobile/shared/models/screen_arguments.dart';
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
-class Company extends StatelessWidget {
+class CompanyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final ScreenArguments args = ModalRoute.of(context).settings.arguments;
+    final ScreenArguments _args = ModalRoute.of(context).settings.arguments;
+    List<Widget> _tags = [];
+
     List<ItemServicesCompanyWidget> listServices = [
       ItemServicesCompanyWidget(
         title: 'Serviço Rápido',
@@ -44,6 +47,52 @@ class Company extends StatelessWidget {
         price: '850',
       ),
     ];
+
+    if (_args.tags != null) {
+      for (var i = 0; i < _args.tags.length; i++) {
+        _tags.add(
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0, right: 8),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black54,
+                borderRadius: BorderRadius.all(Radius.circular(6.0)),
+              ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    children: [
+                      WidgetSpan(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: Icon(
+                            Icons.check_rounded,
+                            size: 15,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      TextSpan(
+                        text: _args.tags[i],
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.black12,
       body: CustomScrollView(
@@ -55,29 +104,31 @@ class Company extends StatelessWidget {
             backgroundColor: Colors.white,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
-                args.title,
+                _args.title,
                 style: TextStyle(color: Theme.of(context).primaryColor),
               ),
               background: Stack(
                 fit: StackFit.expand,
                 children: [
-                  Image(
-                    image: AssetImage(args.image),
+                  FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image: _args.image,
                     fit: BoxFit.cover,
                   ),
                   DecoratedBox(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        begin: Alignment(0.0, 0.6),
-                        end: Alignment(0.0, 0.0),
-                        colors: <Color>[
-                          Color(0xF0FFFFFF),
-                          Color(0x90FFFFFF),
-                          Color(0x00000000),
+                        colors: [
+                          Colors.transparent,
+                          Colors.transparent,
+                          Colors.white
                         ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        stops: [0, 0.5, 1],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -98,17 +149,14 @@ class Company extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.65,
-                            child: Text(
-                              args.title,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          Text(
+                            _args.title,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           RichText(
@@ -117,15 +165,15 @@ class Company extends StatelessWidget {
                                 WidgetSpan(
                                   child: Icon(
                                     Icons.star,
-                                    size: 16,
+                                    size: 20,
                                     color: Colors.amber[700],
                                   ),
                                 ),
                                 TextSpan(
-                                  text: '${args.stars} (${args.ratings})',
+                                  text: '${_args.stars} (${_args.ratings})',
                                   style: TextStyle(
                                     color: Colors.amber[700],
-                                    fontSize: 14.0,
+                                    fontSize: 18.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -140,7 +188,7 @@ class Company extends StatelessWidget {
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width * 0.67,
                         child: Text(
-                          args.description,
+                          _args.description,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           style: TextStyle(
@@ -156,7 +204,7 @@ class Company extends StatelessWidget {
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width * 0.80,
                         child: Text(
-                          args.address,
+                          _args.address,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           style: TextStyle(
@@ -167,35 +215,53 @@ class Company extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Visibility(
-                      visible: args.sale.isNotEmpty,
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.25,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.black54,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(6.0)),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                args.sale,
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.center,
-                                maxLines: 2,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.w600,
+                    Wrap(
+                      children: [
+                        Visibility(
+                          visible: _args.sale.isNotEmpty,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 8, right: 8),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.black54,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6.0)),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 8),
+                                child: RichText(
+                                  textAlign: TextAlign.center,
+                                  text: TextSpan(
+                                    children: [
+                                      WidgetSpan(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 8),
+                                          child: Icon(
+                                            Icons.local_offer_rounded,
+                                            size: 15,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: _args.sale,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
+                        ..._tags,
+                      ],
                     ),
                   ],
                 ),

@@ -9,6 +9,7 @@ class ItemBannerListWidget extends StatelessWidget {
   final String sale;
   final String stars;
   final String ratings;
+  final List<dynamic> tags;
 
   ItemBannerListWidget({
     @required this.title,
@@ -18,6 +19,7 @@ class ItemBannerListWidget extends StatelessWidget {
     this.sale = '',
     this.stars = '',
     this.ratings = '',
+    this.tags,
   }) : assert(title != null);
 
   @override
@@ -39,6 +41,7 @@ class ItemBannerListWidget extends StatelessWidget {
             sale: this.sale,
             stars: this.stars,
             ratings: this.ratings,
+            tags: this.tags,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -228,18 +231,19 @@ class ItemBannerListWidget extends StatelessWidget {
     String sale,
     String stars,
     String ratings,
+    List<dynamic> tags,
   }) {
     Navigator.of(context).pushNamed(
       'company',
       arguments: ScreenArguments(
-        title: name,
-        image: image,
-        description: description,
-        address: address,
-        sale: sale,
-        stars: stars,
-        ratings: ratings,
-      ),
+          title: name,
+          image: image,
+          description: description,
+          address: address,
+          sale: sale,
+          stars: stars,
+          ratings: ratings,
+          tags: tags),
     );
   }
 }

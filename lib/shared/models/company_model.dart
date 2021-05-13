@@ -9,9 +9,10 @@ class CompanyModel {
   final double stars;
   final int ratings;
   final List<dynamic> subscription;
+  final List<dynamic> tags;
 
   CompanyModel(this.title, this.subtitle, this.assetImage, this.description,
-      this.sale, this.stars, this.ratings, this.subscription);
+      this.sale, this.stars, this.ratings, this.subscription, this.tags);
 
   Map<String, dynamic> toMap() {
     return {
@@ -23,6 +24,7 @@ class CompanyModel {
       'stars': stars,
       'ratings': ratings,
       'subscription': subscription,
+      'tags': tags,
     };
   }
 
@@ -36,6 +38,7 @@ class CompanyModel {
       map['stars'],
       map['ratings'],
       List<dynamic>.from(map['subscription']),
+      List<dynamic>.from(map['tags']),
     );
   }
 

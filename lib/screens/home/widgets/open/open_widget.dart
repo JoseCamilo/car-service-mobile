@@ -40,6 +40,7 @@ class _OpenWidgetState extends State<OpenWidget> {
               description: _companyList[i].description,
               stars: _companyList[i].stars.toString(),
               ratings: _companyList[i].ratings.toString(),
+              tags: _companyList[i].tags,
             ),
           );
         }

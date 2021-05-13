@@ -1,4 +1,4 @@
-import 'package:car_service_mobile/screens/company.dart';
+import 'package:car_service_mobile/screens/company/company_page.dart';
 import 'package:car_service_mobile/screens/search/search_controller.dart';
 import 'package:car_service_mobile/shared/widgets/banner_list_widget.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +21,7 @@ class SearchPageBuilderNavigator extends StatelessWidget {
 
           case 'company':
             return MaterialPageRoute(
-                builder: (context) => Company(), settings: settings);
+                builder: (context) => CompanyPage(), settings: settings);
             break;
 
           default:

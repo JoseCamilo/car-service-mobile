@@ -31,6 +31,7 @@ class FilterDashboardController {
           sale: companies[i].sale,
           ratings: companies[i].ratings.toString(),
           stars: companies[i].stars.toString(),
+          tags: companies[i].tags,
         ),
       );
       if (companies[i].subscription.contains('RECOMMENDED')) {
@@ -43,6 +44,7 @@ class FilterDashboardController {
             sale: companies[i].sale,
             ratings: companies[i].ratings.toString(),
             stars: companies[i].stars.toString(),
+            tags: companies[i].tags,
           ),
         );
       }
