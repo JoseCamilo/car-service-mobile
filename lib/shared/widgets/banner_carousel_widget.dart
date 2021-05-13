@@ -148,29 +148,38 @@ class ItemBannerCarouselWidget extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(6.0)),
                                   ),
-                                  child: Column(
+                                  child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Text(
-                                        this.company.stars.toString(),
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: TextAlign.center,
-                                        maxLines: 1,
-                                        style: TextStyle(
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 3),
+                                        child: Icon(
+                                          Icons.star,
                                           color: Colors.white,
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.bold,
+                                          size: 16,
                                         ),
                                       ),
                                       Text(
-                                        '$company.ratings avaliações',
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: TextAlign.start,
-                                        maxLines: 2,
+                                        this
+                                            .company
+                                            .stars
+                                            .toString()
+                                            .replaceAll('.', ','),
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 10.0,
-                                          fontWeight: FontWeight.w300,
+                                          fontSize: 24.0,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      Text(
+                                        '/5',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14.0,
+                                          fontWeight: FontWeight.normal,
                                         ),
                                       ),
                                     ],
