@@ -33,7 +33,7 @@ class BannerCarouselWidget extends StatelessWidget {
             children: <Widget>[
               CarouselSlider(
                 options: CarouselOptions(
-                  height: MediaQuery.of(context).size.height * 0.37,
+                  height: MediaQuery.of(context).size.height * 0.45,
                   viewportFraction: 0.75,
                   enableInfiniteScroll: false,
                 ),
@@ -194,6 +194,44 @@ class ItemBannerCarouselWidget extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.79,
+                child: Wrap(
+                  children: this
+                      .company
+                      .tags
+                      .map(
+                        (e) => Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: RichText(
+                            text: TextSpan(
+                              children: [
+                                WidgetSpan(
+                                  child: Icon(
+                                    Icons.local_offer_rounded,
+                                    size: 15,
+                                    color: Colors.black54,
+                                  ),
+                                ),
+                                WidgetSpan(
+                                    child: SizedBox(
+                                  width: 4,
+                                )),
+                                TextSpan(
+                                  text: e,
+                                  style: TextStyle(color: Colors.black54),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
