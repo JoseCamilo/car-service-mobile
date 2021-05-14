@@ -18,9 +18,10 @@ class FilterDashboardController {
 
   final service = CompanyService();
 
-  void getCompanies(subscription) async {
+  void getCompaniesSubscription(subscription) async {
     state = FilterDashboardState.loading;
-    companies = await service.getCompanies(subscription: subscription);
+    companies =
+        await service.getCompaniesSubscription(subscription: subscription);
     for (var i = 0; i < companies.length; i++) {
       storeList.add(
         ItemBannerListWidget(company: companies[i]),

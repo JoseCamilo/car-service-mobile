@@ -16,7 +16,8 @@ class RecommendedController {
 
   void getOffers() async {
     state = HomeState.loading;
-    companies = await service.getCompanies(subscription: 'RECOMMENDED');
+    companies =
+        await service.getCompaniesSubscription(subscription: 'RECOMMENDED');
     state = HomeState.success;
   }
 }

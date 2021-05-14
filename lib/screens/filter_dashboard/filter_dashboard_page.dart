@@ -34,7 +34,7 @@ class _FilterDashboardPageState extends State<FilterDashboardPage> {
   @override
   void initState() {
     super.initState();
-    controller.getCompanies(this.widget.subscription);
+    controller.getCompaniesSubscription(this.widget.subscription);
     controller.stateNotifier.addListener(() {
       setState(() {
         _storeList = controller.storeList;

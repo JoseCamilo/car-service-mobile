@@ -8,7 +8,19 @@ class CompanyService {
   CollectionReference _promotionsRef =
       FirebaseFirestore.instance.collection('banner_home');
 
-  Future<List<CompanyModel>> getCompanies({String subscription = ''}) async {
+  Future<List<CompanyModel>> getCompaniesQuery({String query = ''}) async {
+    QuerySnapshot querySnapshot = await _companiesRef.get();
+    final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
+    final list = []..addAll(allData);
+    for (var i = 0; i < list.length; i++) {
+      list[i]["index"] = i;
+    }
+    final result = list.map((e) => CompanyModel.fromMap(e)).toList();
+    return result;
+  }
+
+  Future<List<CompanyModel>> getCompaniesSubscription(
+      {String subscription = ''}) async {
     QuerySnapshot querySnapshot = await _companiesRef
         .where('subscription', arrayContains: subscription)
         .get();

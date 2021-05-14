@@ -38,7 +38,8 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final controller = SearchController();
+  final _controllerInputSearch = TextEditingController();
+  final _controller = SearchController();
   List<ItemBannerListWidget> _storeList = [];
 
   @override
@@ -51,10 +52,62 @@ class _SearchPageState extends State<SearchPage> {
   @override
   void initState() {
     super.initState();
-    controller.getCompanies();
-    controller.stateNotifier.addListener(() {
+    _controller.getCompaniesSubscription();
+    _controller.stateNotifier.addListener(() {
       setState(() {
-        _storeList = controller.storeList;
+        this._storeList = _controller.storeList;
+      });
+    });
+
+    _controllerInputSearch.addListener(() {
+      setState(() {
+        if (_controllerInputSearch.text.isEmpty) {
+          this._storeList = _controller.storeList;
+        } else {
+          this._storeList = [];
+          var inputText = _controllerInputSearch.text.toLowerCase();
+
+          for (var i = 0; i < _controller.storeList.length; i++) {
+            var isFind = true;
+            var el = _controller.storeList[i];
+
+            if (el.company.indexing.toLowerCase().contains(inputText)) {
+              this._storeList.add(el);
+              isFind = false;
+            }
+
+            if (isFind) {
+              if (el.company.title.toLowerCase().contains(inputText) ||
+                  el.company.subtitle.toLowerCase().contains(inputText) ||
+                  el.company.description.toLowerCase().contains(inputText)) {
+                this._storeList.add(el);
+                isFind = false;
+              }
+            }
+
+            if (isFind) {
+              for (var j = 0; j < el.company.services.length; j++) {
+                var ser = el.company.services[j];
+                if (ser.title.toLowerCase().contains(inputText) ||
+                    ser.description.toLowerCase().contains(inputText)) {
+                  this._storeList.add(el);
+                  isFind = false;
+                }
+              }
+            }
+
+            if (isFind) {
+              for (var k = 0; k < el.company.servicesRecommended.length; k++) {
+                var rec = el.company.servicesRecommended[k];
+                if (rec.title.toLowerCase().contains(inputText) ||
+                    rec.description.toLowerCase().contains(inputText)) {
+                  this._storeList.add(el);
+                  isFind = false;
+                }
+              }
+            }
+          }
+        }
       });
     });
   }
@@ -66,7 +119,7 @@ class _SearchPageState extends State<SearchPage> {
     Widget _titleStoreListSliver = SliverToBoxAdapter();
     Widget _emptyListSliver = SliverToBoxAdapter();
 
-    switch (controller.state) {
+    switch (_controller.state) {
       case SearchState.success:
         _storeListSliver = SliverList(
           delegate: SliverChildBuilderDelegate(
@@ -116,6 +169,22 @@ class _SearchPageState extends State<SearchPage> {
       default:
     }
 
+    if (this._storeList.length == 0) {
+      _emptyListSliver = SliverToBoxAdapter(
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.3,
+          child: Center(
+            child: Text(
+              'Nada foi encontrado!',
+              style: TextStyle(
+                fontSize: 16.0,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -124,6 +193,7 @@ class _SearchPageState extends State<SearchPage> {
               padding:
                   const EdgeInsets.only(top: 40.0, left: 16.0, right: 16.0),
               child: TextField(
+                controller: _controllerInputSearch,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(16.0))),
@@ -140,12 +210,12 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ),
           SliverAnimatedOpacity(
-            opacity: controller.state == SearchState.success ? 1 : 0,
+            opacity: _controller.state == SearchState.success ? 1 : 0,
             duration: Duration(seconds: 1),
             sliver: _titleStoreListSliver,
           ),
           SliverAnimatedOpacity(
-            opacity: controller.state == SearchState.success ? 1 : 0,
+            opacity: _controller.state == SearchState.success ? 1 : 0,
             duration: Duration(seconds: 1),
             sliver: _storeListSliver,
           ),

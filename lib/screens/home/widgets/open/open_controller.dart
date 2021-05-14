@@ -16,7 +16,7 @@ class OpenController {
 
   void getOffers() async {
     state = HomeState.loading;
-    companies = await service.getCompanies(subscription: 'OPEN');
+    companies = await service.getCompaniesSubscription(subscription: 'OPEN');
     state = HomeState.success;
   }
 }

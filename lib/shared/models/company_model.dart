@@ -12,19 +12,22 @@ class CompanyModel {
   final List<String> tags;
   final List<ServiceCompanyModel> services;
   final List<ServiceCompanyModel> servicesRecommended;
+  final String indexing;
 
   CompanyModel(
-      this.title,
-      this.subtitle,
-      this.assetImage,
-      this.description,
-      this.sale,
-      this.stars,
-      this.ratings,
-      this.subscription,
-      this.tags,
-      this.services,
-      this.servicesRecommended);
+    this.title,
+    this.subtitle,
+    this.assetImage,
+    this.description,
+    this.sale,
+    this.stars,
+    this.ratings,
+    this.subscription,
+    this.tags,
+    this.services,
+    this.servicesRecommended,
+    this.indexing,
+  );
 
   Map<String, dynamic> toMap() {
     return {
@@ -39,6 +42,7 @@ class CompanyModel {
       'tags': tags,
       'services': services,
       'servicesRecommended': servicesRecommended,
+      'indexing': indexing,
     };
   }
 
@@ -48,6 +52,9 @@ class CompanyModel {
     }
     if (map['servicesRecommended'] == null) {
       map['servicesRecommended'] = [];
+    }
+    if (map['indexing'] == null) {
+      map['indexing'] = '';
     }
     return CompanyModel(
       map['title'],
@@ -65,6 +72,7 @@ class CompanyModel {
       List<ServiceCompanyModel>.from(
         map['servicesRecommended'].map((x) => ServiceCompanyModel.fromMap(x)),
       ),
+      map['indexing'],
     );
   }
 

@@ -16,9 +16,9 @@ class SearchController {
 
   final service = CompanyService();
 
-  void getCompanies() async {
+  void getCompaniesSubscription() async {
     state = SearchState.loading;
-    companies = await service.getCompanies();
+    companies = await service.getCompaniesQuery();
     for (var i = 0; i < companies.length; i++) {
       storeList.add(
         ItemBannerListWidget(company: companies[i]),
