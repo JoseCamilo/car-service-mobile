@@ -82,6 +82,7 @@ class _MyAppPageState extends State<MyAppPage> {
         accentColor: Colors.red[700],
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: _widgets[_selectedIndexTab],
         bottomNavigationBar: BottomNavigationBar(
@@ -111,3 +112,67 @@ class _MyAppPageState extends State<MyAppPage> {
     );
   }
 }
+
+// import 'package:flutter/material.dart';
+// import 'maps/animate_camera.dart';
+// import 'maps/map_click.dart';
+// import 'maps/map_coordinates.dart';
+// import 'maps/map_ui.dart';
+// import 'maps/map_ui.dart';
+// import 'maps/marker_icons.dart';
+// import 'maps/move_camera.dart';
+// import 'maps/padding.dart';
+// import 'maps/page.dart';
+// import 'maps/place_circle.dart';
+// import 'maps/place_marker.dart';
+// import 'maps/place_polygon.dart';
+// import 'maps/place_polyline.dart';
+// import 'maps/scrolling_map.dart';
+// import 'maps/snapshot.dart';
+// import 'maps/tile_overlay.dart';
+
+// final List<GoogleMapExampleAppPage> _allPages = <GoogleMapExampleAppPage>[
+//   MapUiPage(),
+//   MapCoordinatesPage(),
+//   MapClickPage(),
+//   AnimateCameraPage(),
+//   MoveCameraPage(),
+//   PlaceMarkerPage(),
+//   MarkerIconsPage(),
+//   ScrollingMapPage(),
+//   PlacePolylinePage(),
+//   PlacePolygonPage(),
+//   PlaceCirclePage(),
+//   PaddingPage(),
+//   SnapshotPage(),
+//   TileOverlayPage(),
+// ];
+
+// class MapsDemo extends StatelessWidget {
+//   void _pushPage(BuildContext context, GoogleMapExampleAppPage page) {
+//     Navigator.of(context).push(MaterialPageRoute<void>(
+//         builder: (_) => Scaffold(
+//               appBar: AppBar(title: Text(page.title)),
+//               body: page,
+//             )));
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: const Text('GoogleMaps examples')),
+//       body: ListView.builder(
+//         itemCount: _allPages.length,
+//         itemBuilder: (_, int index) => ListTile(
+//           leading: _allPages[index].leading,
+//           title: Text(_allPages[index].title),
+//           onTap: () => _pushPage(context, _allPages[index]),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// void main() {
+//   runApp(MaterialApp(home: MapsDemo()));
+// }

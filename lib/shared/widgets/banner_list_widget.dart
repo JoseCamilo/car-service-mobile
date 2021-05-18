@@ -206,7 +206,7 @@ class ItemBannerListWidget extends StatelessWidget {
                 ],
               ),
               Visibility(
-                visible: this.company.subtitle.isNotEmpty,
+                visible: this.company.address.isNotEmpty,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -215,7 +215,7 @@ class ItemBannerListWidget extends StatelessWidget {
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width * 0.79,
                         child: Text(
-                          this.company.subtitle,
+                          this.company.address,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           style: TextStyle(

@@ -2,7 +2,6 @@ import 'dart:convert';
 
 class CompanyModel {
   final String title;
-  final String subtitle;
   final List<String> assetImage;
   final String description;
   final String sale;
@@ -13,10 +12,13 @@ class CompanyModel {
   final List<ServiceCompanyModel> services;
   final List<ServiceCompanyModel> servicesRecommended;
   final String indexing;
+  final String address;
+  final List<PhoneCompanyModel> phones;
+  final String descriptionContact;
+  final GeolocationCompanyModel geolocation;
 
   CompanyModel(
     this.title,
-    this.subtitle,
     this.assetImage,
     this.description,
     this.sale,
@@ -27,12 +29,15 @@ class CompanyModel {
     this.services,
     this.servicesRecommended,
     this.indexing,
+    this.address,
+    this.phones,
+    this.descriptionContact,
+    this.geolocation,
   );
 
   Map<String, dynamic> toMap() {
     return {
       'title': title,
-      'subtitle': subtitle,
       'assetImage': assetImage,
       'description': description,
       'sale': sale,
@@ -43,6 +48,10 @@ class CompanyModel {
       'services': services,
       'servicesRecommended': servicesRecommended,
       'indexing': indexing,
+      'address': address,
+      'phones': phones,
+      'descriptionContact': descriptionContact,
+      'geolocation': geolocation,
     };
   }
 
@@ -56,9 +65,14 @@ class CompanyModel {
     if (map['indexing'] == null) {
       map['indexing'] = '';
     }
+    if (map['phones'] == null) {
+      map['phones'] = [];
+    }
+    if (map['descriptionContact'] == null) {
+      map['descriptionContact'] = '';
+    }
     return CompanyModel(
       map['title'],
-      map['subtitle'],
       List<String>.from(map['assetImage']),
       map['description'],
       map['sale'],
@@ -73,6 +87,14 @@ class CompanyModel {
         map['servicesRecommended'].map((x) => ServiceCompanyModel.fromMap(x)),
       ),
       map['indexing'],
+      map['address'],
+      List<PhoneCompanyModel>.from(
+        map['phones'].map((x) => PhoneCompanyModel.fromMap(x)),
+      ),
+      map['descriptionContact'],
+      map['geolocation'] != null
+          ? GeolocationCompanyModel.fromMap(map['geolocation'])
+          : null,
     );
   }
 
@@ -119,4 +141,56 @@ class ServiceCompanyModel {
 
   factory ServiceCompanyModel.fromJson(String source) =>
       ServiceCompanyModel.fromMap(json.decode(source));
+}
+
+class PhoneCompanyModel {
+  final String type;
+  final String number;
+
+  PhoneCompanyModel(this.type, this.number);
+
+  Map<String, dynamic> toMap() {
+    return {
+      'type': type,
+      'number': number,
+    };
+  }
+
+  factory PhoneCompanyModel.fromMap(Map<String, dynamic> map) {
+    return PhoneCompanyModel(
+      map['type'],
+      map['number'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory PhoneCompanyModel.fromJson(String source) =>
+      PhoneCompanyModel.fromMap(json.decode(source));
+}
+
+class GeolocationCompanyModel {
+  final double latitude;
+  final double longitude;
+
+  GeolocationCompanyModel(this.latitude, this.longitude);
+
+  Map<String, dynamic> toMap() {
+    return {
+      'latitude': latitude,
+      'longitude': longitude,
+    };
+  }
+
+  factory GeolocationCompanyModel.fromMap(Map<String, dynamic> map) {
+    return GeolocationCompanyModel(
+      map['latitude'],
+      map['longitude'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory GeolocationCompanyModel.fromJson(String source) =>
+      GeolocationCompanyModel.fromMap(json.decode(source));
 }

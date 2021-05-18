@@ -256,7 +256,7 @@ class ItemBannerCarouselWidget extends StatelessWidget {
               ],
             ),
             Visibility(
-              visible: this.company.subtitle.isNotEmpty,
+              visible: this.company.address.isNotEmpty,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -268,7 +268,7 @@ class ItemBannerCarouselWidget extends StatelessWidget {
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width * 0.7,
                       child: Text(
-                        this.company.subtitle,
+                        this.company.address,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: TextStyle(

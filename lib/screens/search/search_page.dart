@@ -78,7 +78,7 @@ class _SearchPageState extends State<SearchPage> {
 
             if (isFind) {
               if (el.company.title.toLowerCase().contains(inputText) ||
-                  el.company.subtitle.toLowerCase().contains(inputText) ||
+                  el.company.address.toLowerCase().contains(inputText) ||
                   el.company.description.toLowerCase().contains(inputText)) {
                 this._storeList.add(el);
                 isFind = false;

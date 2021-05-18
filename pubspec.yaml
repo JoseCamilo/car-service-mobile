@@ -36,6 +36,8 @@ dependencies:
   skeleton_text: ^3.0.0
   auto_animated: ^3.0.0
   smooth_star_rating: ^1.1.1
+  font_awesome_flutter: ^9.0.0
+  google_maps_flutter: ^2.0.5
 
 dev_dependencies:
   flutter_test:
