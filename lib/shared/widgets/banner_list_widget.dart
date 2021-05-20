@@ -79,8 +79,7 @@ class ItemBannerListWidget extends StatelessWidget {
                     child: Stack(
                       children: [
                         Visibility(
-                          visible: this.company.assetImage[0].isNotEmpty &&
-                              this.company.assetImage[0].contains('http'),
+                          visible: this.company.assetImage[0].isNotEmpty,
                           child: Container(
                             height: MediaQuery.of(context).size.height * 0.33,
                             width: MediaQuery.of(context).size.width * 0.80,

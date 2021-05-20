@@ -33,7 +33,7 @@ class BannerCarouselWidget extends StatelessWidget {
             children: <Widget>[
               CarouselSlider(
                 options: CarouselOptions(
-                  height: MediaQuery.of(context).size.height * 0.45,
+                  height: MediaQuery.of(context).size.height * 0.40,
                   viewportFraction: 0.75,
                   enableInfiniteScroll: false,
                 ),
@@ -64,6 +64,7 @@ class ItemBannerCarouselWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget _containerRatings = SizedBox();
+    List _tags = [];
 
     if (this.company.rating != null && this.company.rating.stars != null) {
       _containerRatings = Padding(
@@ -111,6 +112,11 @@ class ItemBannerCarouselWidget extends StatelessWidget {
       );
     }
 
+    if (this.company.tags.length > 2) {
+      _tags.add(this.company.tags[0]);
+      _tags.add(this.company.tags[1]);
+    }
+
     return Material(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
@@ -133,8 +139,7 @@ class ItemBannerCarouselWidget extends StatelessWidget {
                   child: Stack(
                     children: [
                       Visibility(
-                        visible: this.company.assetImage[0].isNotEmpty &&
-                            this.company.assetImage[0].contains('http'),
+                        visible: this.company.assetImage[0].isNotEmpty,
                         child: Container(
                           height: MediaQuery.of(context).size.height * 0.25,
                           width: MediaQuery.of(context).size.width * 0.73,
@@ -195,9 +200,7 @@ class ItemBannerCarouselWidget extends StatelessWidget {
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.79,
                 child: Wrap(
-                  children: this
-                      .company
-                      .tags
+                  children: _tags
                       .map(
                         (e) => Padding(
                           padding: const EdgeInsets.only(right: 8),
@@ -265,7 +268,7 @@ class ItemBannerCarouselWidget extends StatelessWidget {
                       child: Text(
                         this.company.address,
                         overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
+                        maxLines: 1,
                         style: TextStyle(
                           color: Colors.black54,
                           fontSize: 14.0,

@@ -70,8 +70,6 @@ class _RatingsWidgetState extends State<RatingsWidget> {
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            print(widget.companyKey);
-                            print(widget.companyTitle);
                             Navigator.of(context).pushNamed(
                               'new-rating',
                               arguments: {
