@@ -1,5 +1,5 @@
 import 'package:car_service_mobile/shared/models/promotion_model.dart';
-import 'package:car_service_mobile/shared/services/company_service.dart';
+import 'package:car_service_mobile/shared/services/promotion_service.dart';
 import 'package:flutter/material.dart';
 
 import '../../home_state.dart';
@@ -12,7 +12,7 @@ class BannerPromotionsController {
 
   List<PromotionModel> promotions;
 
-  final service = CompanyService();
+  final service = PromotionService();
 
   void getPromotions() async {
     state = HomeState.loading;

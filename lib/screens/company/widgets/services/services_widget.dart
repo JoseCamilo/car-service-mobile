@@ -10,7 +10,6 @@ class ServicesWidget extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Widget _servicesBuild;
     List<Widget> _servicesBuildItems = [];
 
     if (servicesRecommended.length > 0) {
@@ -63,11 +62,9 @@ class ServicesWidget extends StatelessWidget {
       }
     }
 
-    _servicesBuild = ListView(
-      physics: NeverScrollableScrollPhysics(),
+    return ListView(
+      physics: BouncingScrollPhysics(),
       children: _servicesBuildItems,
     );
-
-    return _servicesBuild;
   }
 }

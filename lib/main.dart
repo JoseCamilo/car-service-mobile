@@ -4,6 +4,7 @@ import 'package:car_service_mobile/screens/home/home_page.dart';
 import 'package:car_service_mobile/screens/search/search_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -109,6 +110,11 @@ class _MyAppPageState extends State<MyAppPage> {
           currentIndex: _selectedIndexTab,
         ),
       ),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
+      supportedLocales: [const Locale('pt', 'BR')],
     );
   }
 }

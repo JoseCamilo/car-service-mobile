@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 class CompanyModel {
+  final String id;
   final String title;
   final List<String> assetImage;
   final String description;
   final String sale;
-  final double stars;
-  final int ratings;
+  final RatingCompanyModel rating;
   final List<String> subscription;
   final List<String> tags;
   final List<ServiceCompanyModel> services;
@@ -18,12 +18,12 @@ class CompanyModel {
   final GeolocationCompanyModel geolocation;
 
   CompanyModel(
+    this.id,
     this.title,
     this.assetImage,
     this.description,
     this.sale,
-    this.stars,
-    this.ratings,
+    this.rating,
     this.subscription,
     this.tags,
     this.services,
@@ -37,12 +37,12 @@ class CompanyModel {
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'title': title,
       'assetImage': assetImage,
       'description': description,
       'sale': sale,
-      'stars': stars,
-      'ratings': ratings,
+      'rating': rating,
       'subscription': subscription,
       'tags': tags,
       'services': services,
@@ -72,12 +72,12 @@ class CompanyModel {
       map['descriptionContact'] = '';
     }
     return CompanyModel(
+      map['id'],
       map['title'],
       List<String>.from(map['assetImage']),
       map['description'],
       map['sale'],
-      map['stars'],
-      map['ratings'],
+      map['rating'] != null ? RatingCompanyModel.fromMap(map['rating']) : null,
       List<String>.from(map['subscription']),
       List<String>.from(map['tags']),
       List<ServiceCompanyModel>.from(
@@ -193,4 +193,46 @@ class GeolocationCompanyModel {
 
   factory GeolocationCompanyModel.fromJson(String source) =>
       GeolocationCompanyModel.fromMap(json.decode(source));
+}
+
+class RatingCompanyModel {
+  final double stars;
+  final int ratings;
+  final int oneStars;
+  final int twoStars;
+  final int threeStars;
+  final int fourStars;
+  final int fiveStars;
+
+  RatingCompanyModel(this.stars, this.ratings, this.oneStars, this.twoStars,
+      this.threeStars, this.fourStars, this.fiveStars);
+
+  Map<String, dynamic> toMap() {
+    return {
+      'stars': stars,
+      'ratings': ratings,
+      'oneStars': oneStars,
+      'twoStars': twoStars,
+      'threeStars': threeStars,
+      'fourStars': fourStars,
+      'fiveStars': fiveStars,
+    };
+  }
+
+  factory RatingCompanyModel.fromMap(Map<String, dynamic> map) {
+    return RatingCompanyModel(
+      map['stars'],
+      map['ratings'],
+      map['oneStars'],
+      map['twoStars'],
+      map['threeStars'],
+      map['fourStars'],
+      map['fiveStars'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory RatingCompanyModel.fromJson(String source) =>
+      RatingCompanyModel.fromMap(json.decode(source));
 }

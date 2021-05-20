@@ -1,3 +1,4 @@
+import 'package:car_service_mobile/screens/company/widgets/rating/new_rating_page.dart';
 import 'package:car_service_mobile/screens/filter_dashboard/filter_dashboard_page.dart';
 import 'package:car_service_mobile/screens/home/widgets/open/open_widget.dart';
 import 'package:car_service_mobile/screens/home/widgets/recommended/recommended_widget.dart';
@@ -5,6 +6,7 @@ import 'package:car_service_mobile/screens/home/widgets/dashboard/dashboard_widg
 import 'package:car_service_mobile/screens/home/widgets/special_offers/special_offers_widget.dart';
 import 'package:car_service_mobile/screens/company/company_page.dart';
 import 'package:car_service_mobile/screens/home/widgets/banner_promotions/banner_promotions_widget.dart';
+import 'package:car_service_mobile/shared/models/company_model.dart';
 import 'package:flutter/material.dart';
 
 class HomePageBuilderNavigator extends StatelessWidget {
@@ -23,6 +25,7 @@ class HomePageBuilderNavigator extends StatelessWidget {
 
           case 'filter-dashboard':
             final arguments = settings.arguments as Map;
+
             return MaterialPageRoute(
                 builder: (context) => FilterDashboardPage(
                       title: arguments['title'],
@@ -34,6 +37,17 @@ class HomePageBuilderNavigator extends StatelessWidget {
           case 'company':
             return MaterialPageRoute(
                 builder: (context) => CompanyPage(), settings: settings);
+            break;
+
+          case 'new-rating':
+            final arguments = settings.arguments as Map;
+
+            return MaterialPageRoute(
+                builder: (context) => NewRatingPage(
+                      id: arguments['id'],
+                      title: arguments['title'],
+                    ),
+                settings: settings);
             break;
 
           default:

@@ -70,7 +70,6 @@ class _BannerPromotionsWidgetState extends State<BannerPromotionsWidget> {
                         subtitle: item.subtitle,
                         assetImage: item.assetImage,
                         onClick: () => {
-                          print(item.subscription),
                           Navigator.of(context).pushNamed(
                             'filter-dashboard',
                             arguments: {

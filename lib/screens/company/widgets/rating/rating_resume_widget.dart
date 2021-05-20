@@ -1,21 +1,24 @@
+import 'package:car_service_mobile/shared/models/company_model.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
-class RatingWidget extends StatelessWidget {
-  final double stars;
-  final int ratings;
+class RatingResumeWidget extends StatelessWidget {
+  final RatingCompanyModel rating;
 
-  const RatingWidget({Key key, this.stars, this.ratings}) : super(key: key);
+  const RatingResumeWidget({
+    Key key,
+    this.rating,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Widget _ratingWidgetColumn = Column();
 
-    if (stars != null) {
+    if (rating != null) {
       _ratingWidgetColumn = Column(
         children: [
           Text(
-            '${stars.toString().replaceAll('.', ',')}',
+            '${rating.stars.toString().replaceAll('.', ',')}',
             style: TextStyle(
               color: Colors.amber[700],
               fontSize: 24.0,
@@ -23,8 +26,8 @@ class RatingWidget extends StatelessWidget {
             ),
           ),
           SmoothStarRating(
-            rating: stars,
-            isReadOnly: false,
+            rating: rating.stars,
+            isReadOnly: true,
             size: 14,
             filledIconData: Icons.star,
             halfFilledIconData: Icons.star_half,
@@ -35,7 +38,7 @@ class RatingWidget extends StatelessWidget {
             borderColor: Colors.amber[700],
           ),
           Text(
-            '$ratings',
+            '${rating.ratings}',
             style: TextStyle(
               color: Colors.black54,
               fontSize: 12.0,

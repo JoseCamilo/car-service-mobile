@@ -8,6 +8,53 @@ class ItemBannerListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget _containerRatings = SizedBox();
+
+    if (this.company.rating != null && this.company.rating.stars != null) {
+      _containerRatings = Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width * 0.20,
+          height: MediaQuery.of(context).size.height * 0.07,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.black54,
+              borderRadius: BorderRadius.all(Radius.circular(6.0)),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 3),
+                  child: Icon(
+                    Icons.star,
+                    color: Colors.white,
+                    size: 16,
+                  ),
+                ),
+                Text(
+                  this.company.rating.stars.toString().replaceAll('.', ','),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Text(
+                  '/5',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
       child: Material(
@@ -83,62 +130,7 @@ class ItemBannerListWidget extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Visibility(
-                              visible: this.company.stars != null,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.20,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.07,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.black54,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(6.0)),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 3),
-                                          child: Icon(
-                                            Icons.star,
-                                            color: Colors.white,
-                                            size: 16,
-                                          ),
-                                        ),
-                                        Text(
-                                          this
-                                              .company
-                                              .stars
-                                              .toString()
-                                              .replaceAll('.', ','),
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 22.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        Text(
-                                          '/5',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
+                            _containerRatings,
                           ],
                         ),
                       ],

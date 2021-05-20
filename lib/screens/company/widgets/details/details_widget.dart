@@ -14,7 +14,6 @@ class DetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _contactBuild;
     List<Widget> _contactBuildItems = [];
 
     if (company.geolocation != null) {
@@ -64,9 +63,14 @@ class DetailsWidget extends StatelessWidget {
                 _controller.complete(controller);
               },
               markers: _markers,
+              // gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+              //   Factory<OneSequenceGestureRecognizer>(
+              //     () => EagerGestureRecognizer(),
+              //   ),
+              // },
               gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
                 Factory<OneSequenceGestureRecognizer>(
-                  () => EagerGestureRecognizer(),
+                  () => ScaleGestureRecognizer(),
                 ),
               },
             ),
@@ -122,12 +126,10 @@ class DetailsWidget extends StatelessWidget {
       );
     }
 
-    _contactBuild = ListView(
-      physics: NeverScrollableScrollPhysics(),
+    return ListView(
+      physics: BouncingScrollPhysics(),
       children: _contactBuildItems,
     );
-
-    return _contactBuild;
   }
 }
 
