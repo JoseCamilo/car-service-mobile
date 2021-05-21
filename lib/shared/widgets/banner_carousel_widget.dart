@@ -18,7 +18,7 @@ class BannerCarouselWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 16.0, left: 8.0),
+          padding: const EdgeInsets.only(left: 8.0),
           child: Text(
             this.title,
             style: TextStyle(

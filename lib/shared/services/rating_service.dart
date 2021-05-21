@@ -8,7 +8,7 @@ class RatingService {
   Future<List<RatingModel>> getRatings(String companyId) async {
     QuerySnapshot querySnapshot = await _ratingsRef
         .where('company', isEqualTo: companyId)
-        // .where('checked', isEqualTo: true)
+        .where('checked', isEqualTo: true)
         .get();
     final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
     final result = allData.map((e) => RatingModel.fromMap(e)).toList();

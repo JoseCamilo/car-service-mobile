@@ -1,6 +1,7 @@
 import 'package:car_service_mobile/screens/filter_dashboard/filter_dashboard_controller.dart';
 import 'package:car_service_mobile/shared/widgets/banner_carousel_widget.dart';
 import 'package:car_service_mobile/shared/widgets/banner_list_widget.dart';
+import 'package:car_service_mobile/shared/widgets/refresh_widget.dart';
 import 'package:flutter/material.dart';
 
 enum FilterDashboardState { success, loading, error, empty }
@@ -34,6 +35,10 @@ class _FilterDashboardPageState extends State<FilterDashboardPage> {
   @override
   void initState() {
     super.initState();
+    loadPage();
+  }
+
+  Future loadPage() async {
     controller.getCompaniesSubscription(this.widget.subscription);
     controller.stateNotifier.addListener(() {
       setState(() {
@@ -124,31 +129,34 @@ class _FilterDashboardPageState extends State<FilterDashboardPage> {
           onTap: () => Navigator.of(context).pop(),
         ),
       ),
-      body: CustomScrollView(
-        slivers: <Widget>[
-          _loadingListSliver,
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 32,
+      body: RefreshWidget(
+        onRefresh: loadPage,
+        child: CustomScrollView(
+          slivers: <Widget>[
+            _loadingListSliver,
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 32,
+              ),
             ),
-          ),
-          SliverAnimatedOpacity(
-            opacity: controller.state == FilterDashboardState.success ? 1 : 0,
-            duration: Duration(seconds: 1),
-            sliver: _recommendedListSliver,
-          ),
-          SliverAnimatedOpacity(
-            opacity: controller.state == FilterDashboardState.success ? 1 : 0,
-            duration: Duration(seconds: 1),
-            sliver: _titleStoreListSliver,
-          ),
-          SliverAnimatedOpacity(
-            opacity: controller.state == FilterDashboardState.success ? 1 : 0,
-            duration: Duration(seconds: 1),
-            sliver: _storeListSliver,
-          ),
-          _emptyListSliver,
-        ],
+            SliverAnimatedOpacity(
+              opacity: controller.state == FilterDashboardState.success ? 1 : 0,
+              duration: Duration(seconds: 1),
+              sliver: _recommendedListSliver,
+            ),
+            SliverAnimatedOpacity(
+              opacity: controller.state == FilterDashboardState.success ? 1 : 0,
+              duration: Duration(seconds: 1),
+              sliver: _titleStoreListSliver,
+            ),
+            SliverAnimatedOpacity(
+              opacity: controller.state == FilterDashboardState.success ? 1 : 0,
+              duration: Duration(seconds: 1),
+              sliver: _storeListSliver,
+            ),
+            _emptyListSliver,
+          ],
+        ),
       ),
     );
   }

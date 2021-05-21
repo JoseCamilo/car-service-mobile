@@ -19,6 +19,8 @@ class FilterDashboardController {
   final service = CompanyService();
 
   void getCompaniesSubscription(subscription) async {
+    storeList = [];
+    recomendedList = [];
     state = FilterDashboardState.loading;
     companies =
         await service.getCompaniesSubscription(subscription: subscription);
