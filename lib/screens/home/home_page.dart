@@ -6,7 +6,6 @@ import 'package:car_service_mobile/screens/home/widgets/dashboard/dashboard_widg
 import 'package:car_service_mobile/screens/home/widgets/special_offers/special_offers_widget.dart';
 import 'package:car_service_mobile/screens/company/company_page.dart';
 import 'package:car_service_mobile/screens/home/widgets/banner_promotions/banner_promotions_widget.dart';
-import 'package:car_service_mobile/shared/models/company_model.dart';
 import 'package:flutter/material.dart';
 
 class HomePageBuilderNavigator extends StatelessWidget {
@@ -77,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                 fit: StackFit.expand,
                 children: [
                   Image(
-                    image: AssetImage('assets/images/car_service_logo.jpg'),
+                    image: AssetImage('assets/images/auto_center.png'),
                     fit: BoxFit.cover,
                   ),
                   DecoratedBox(
